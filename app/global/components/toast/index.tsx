@@ -30,7 +30,13 @@ const Toast = () => {
         {typeToIconMapper?.[toast?.type]}
         <span className="sr-only">Check icon</span>
       </div>
-      <div className="ml-3 text-sm font-normal">{toast?.message}</div>
+      <div
+        className={`ml-3 text-sm font-normal text-${
+          typeToColorMapper?.[toast?.type]
+        }-700`}
+      >
+        {toast?.message}
+      </div>
       <button
         type="button"
         onClick={onClose}
