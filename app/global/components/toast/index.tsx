@@ -15,7 +15,7 @@ const Toast = () => {
   return (
     <div
       id="toast-top-left"
-      className={`flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 absolute top-5 right-5 ${
+      className={`flex items-center w-full max-w-md p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 sticky top-5 ml-auto mr-5 ${
         !toast?.message && "hidden"
       }`}
       role="alert"

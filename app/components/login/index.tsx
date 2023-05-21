@@ -34,7 +34,7 @@ const Login = () => {
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <h1 className="font-[FaseBulan] mt-10 text-center text-8xl uppercase">
-              Sign In
+              Login
             </h1>
           </div>
 
@@ -78,7 +78,7 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="flex mt-14 w-full justify-center m-auto max-w-md rounded-full bg-blue-700 hover:bg-blue-600 p-3 text-center"
+                className="flex mt-14 w-full justify-center m-auto max-w-md rounded-full border-2 border-blue-600 bg-black transition ease-in-out delay-100 duration-300 hover:text-white text-blue-600 hover:bg-blue-600 p-3 text-center"
               >
                 {isLoading ? "Loading..." : "Login"}
               </button>
