@@ -1,75 +1,103 @@
+import EmailIcon from "@/app/global/assets/svgs/EmailIcon";
+import PasswordIcon from "@/app/global/assets/svgs/PasswordIcon";
 import { useLogin } from "@/app/global/hooks/auth/useLogin";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginValidationSchema } from "./resolver";
+import { LoginFieldType } from "./types";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFieldType>({
+    resolver: yupResolver(loginValidationSchema),
+  });
   const { signIn } = useLogin();
 
-  const onSubmit = (data: any) => {
-    signIn(data);
+  const onSubmit = (data: LoginFieldType) => {
+    console.log("🚀 ~ file: index.tsx:12 ~ onSubmit ~ data:", data);
+    // signIn(data);
   };
 
   return (
     <div className="flex flex-col content-center min-h-screen">
       <form
-        className="border m-auto max-w-lg w-screen"
+        className="rounded-lg m-auto max-w-lg w-screen"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">
-              Sign in to your account
-            </h2>
+            <h1 className="font-['FaseBulan'] mt-10 text-center text-8xl uppercase">
+              Sign In
+            </h1>
           </div>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <div>
+          <div className="my-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="relative mb-3">
+              <input
+                type="text"
+                className={`caret-white peer border-b-2 m-0 block h-[58px] w-full rounded bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-gray-200 transition duration-200 ease-linear focus:border-primary ${
+                  errors?.email
+                    ? "focus:border-red-600 animate-error-shake"
+                    : "focus:border-blue-700"
+                } focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-gray-300 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]`}
+                id="floatingInput"
+                placeholder=" "
+                {...register("email", { required: true })}
+              />
               <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 "
+                htmlFor="floatingInput"
+                className="pointer-events-none absolute left-0 top-0 origin-[0_0] border-transparent px-3 pt-4 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-3 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-3 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:peer-focus:text-primary"
               >
-                Email address
+                <div className="flex">
+                  <EmailIcon /> <span className="ml-3">Email Address</span>
+                </div>
               </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
+              {errors.email && (
+                <span className="text-red-600 text-xs">
+                  {errors?.email?.message}
+                </span>
+              )}
             </div>
 
             <div className="mt-5">
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 "
-                >
-                  Password
-                </label>
-              </div>
-              <div className="mt-2">
+              <div className="relative mb-3">
                 <input
-                  id="password"
-                  name="password"
                   type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className={`caret-white peer border-b-2 m-0 block h-[58px] w-full rounded bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-white transition duration-200 ease-linear focus:border-primary focus:pb-[0.625rem] ${
+                    errors?.email
+                      ? "focus:border-red-600 animate-error-shake"
+                      : "focus:border-blue-700"
+                  } focus:pt-[1.625rem] focus:text-white focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]`}
+                  id="floatingPassword"
+                  placeholder=" "
+                  {...register("password", { required: true })}
                 />
+                <label
+                  htmlFor="floatingPassword"
+                  className="pointer-events-none absolute left-0 top-0 origin-[0_0] border-transparent px-3 py-4 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:peer-focus:text-primary"
+                >
+                  <div className="flex">
+                    <PasswordIcon /> <span className="ml-3"> Password</span>
+                  </div>
+                </label>
+                {errors.password && (
+                  <span className="text-red-600 text-xs">
+                    {errors?.password?.message}
+                  </span>
+                )}
               </div>
             </div>
 
             <div>
               <button
                 type="submit"
-                className="flex mt-10 w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex mt-14 w-full justify-center m-auto max-w-md rounded-full bg-blue-700 hover:bg-blue-600 p-3 text-center uppercase"
               >
-                Sign in
+                Sign In
               </button>
             </div>
           </div>
