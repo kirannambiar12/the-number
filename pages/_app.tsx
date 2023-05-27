@@ -5,11 +5,13 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { QueryClientProvider } from "react-query";
 import { RQClient } from "@/app/global/configStore/reactQuery";
+import Navbar from "@/app/global/components/navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={RQClient}>
+        <Navbar />
         <Toast />
         <Component {...pageProps} />
       </QueryClientProvider>

@@ -26,3 +26,24 @@ select:-webkit-autofill:focus {
   font-weight: normal;
   font-style: normal;
 }
+
+.link {
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#2463eb, #2463eb);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.1s ease-in-out;
+}
+
+.link-underline {
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(#2463eb, #2463eb);
+}
+
+.link:hover,
+.active-link {
+  background-size: 40% 3px;
+  background-position: 0 100%;
+}

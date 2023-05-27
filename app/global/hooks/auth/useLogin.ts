@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
 import { toastActions } from "@/app/store/Toast/slice";
+import { store } from "@/app/store";
 
 type SignIn = {
   email: string;
@@ -12,14 +13,13 @@ type SignIn = {
 
 export const useLogin = () => {
   const { push } = useRouter();
-  const dispatch = useDispatch();
 
   const mutate = useMutation(
     (data: SignIn) =>
       signInWithEmailAndPassword(auth, data?.email, data?.password),
     {
       onSuccess(data) {
-        dispatch(
+        store.dispatch(
           toastActions.displayToast({
             message: "You are successfully logged In.",
             type: "success",
@@ -28,7 +28,7 @@ export const useLogin = () => {
         if (data?.user?.email) push("/");
       },
       onError() {
-        dispatch(
+        store.dispatch(
           toastActions.displayToast({
             message: "Something went wrong. Please try again.",
             type: "error",
@@ -42,8 +42,11 @@ export const useLogin = () => {
     return auth?.currentUser;
   };
 
+  const isAuthenticated = getUserAuthDetails()?.uid;
+
   return {
     ...mutate,
+    isAuthenticated,
     getUserAuthDetails,
   };
 };
