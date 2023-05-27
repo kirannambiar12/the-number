@@ -1,11 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { useNav } from "../../hooks/auth/useNav";
-
-const navigation = [
-  { name: "About Us", href: "/about-us", current: true },
-  { name: "Contact Us", href: "/contact", current: false },
-  { name: "Our Vision", href: "/vision", current: false },
-];
+import { navigation } from "../../constants";
 
 export default function Navbar() {
   const { isNavVisible } = useNav();
