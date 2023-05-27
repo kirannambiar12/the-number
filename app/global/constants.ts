@@ -5,3 +5,8 @@ export const navigation = [
   { name: "Contact Us", href: "/contact", current: false },
   { name: "Our Vision", href: "/vision", current: false },
 ];
+
+export const contactUsNav = [
+  { name: "Home", href: "/", current: false },
+  ...navigation,
+];
