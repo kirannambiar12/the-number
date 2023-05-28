@@ -2,7 +2,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../configStore/firebase";
 import { useRouter } from "next/router";
 import { useMutation } from "react-query";
-import { useDispatch } from "react-redux";
 import { toastActions } from "@/app/store/Toast/slice";
 import { store } from "@/app/store";
 
