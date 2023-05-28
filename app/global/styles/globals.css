@@ -27,6 +27,13 @@ select:-webkit-autofill:focus {
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Electronic";
+  src: url("../assets/fonts/Electrolize-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .link {
   border-bottom-width: 0;
   background-image: linear-gradient(transparent, transparent),

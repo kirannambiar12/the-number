@@ -1,12 +1,14 @@
 import { Disclosure } from "@headlessui/react";
 import { useNav } from "../../hooks/auth/useNav";
 import { navigation } from "../../constants";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const { pathname } = useRouter();
   const { isNavVisible } = useNav();
   if (!isNavVisible) return null;
   return (
-    <Disclosure as="nav" className="pt-5 bg-repeat">
+    <Disclosure as="nav" className="pt-5 absolute top-0 left-0 w-screen">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -38,11 +40,13 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={"rounded-md px-3 py-2 text-sm font-medium"}
-                        aria-current={item.current ? "page" : undefined}
+                        aria-current={
+                          pathname === item.href ? "page" : undefined
+                        }
                       >
                         <span
                           className={`${
-                            item.current && "active-link"
+                            pathname === item.href && "active-link"
                           } link link-underline pb-1`}
                         >
                           {item.name}

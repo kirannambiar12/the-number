@@ -1,13 +1,5 @@
-import Card from "@/app/global/components/card";
+import Home from "@/app/components/home";
 
-export default function Home() {
-  return (
-    <div className="container-sm">
-      <div className="grid grid-cols-4 gap-4">
-        {[0, 1, 2, 3, 4, 5, 6].map(() => (
-          <Card />
-        ))}
-      </div>
-    </div>
-  );
+export default function HomePage() {
+  return <Home />;
 }
