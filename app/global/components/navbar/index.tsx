@@ -2,6 +2,8 @@ import { Disclosure } from "@headlessui/react";
 import { useNav } from "../../hooks/auth/useNav";
 import { navigation } from "../../constants";
 import { useRouter } from "next/router";
+import logo from "@/app/global/assets/gif/logo.gif";
+import Image from "next/image";
 
 export default function Navbar() {
   const { pathname } = useRouter();
@@ -22,15 +24,15 @@ export default function Navbar() {
               </div>
               <div className="flex flex-row w-screen">
                 <div className="basis-1/8 flex flex-shrink-0 items-center">
-                  <img
+                  <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src={logo}
+                    alt="The Number Logo"
                   />
-                  <img
+                  <Image
                     className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
+                    src={logo}
+                    alt="The Number Logo"
                   />
                 </div>
                 <div className="hidden relative -left-7 sm:block mx-auto">
