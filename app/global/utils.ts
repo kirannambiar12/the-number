@@ -6,10 +6,10 @@ export function getSVGComponent(
 
 export function formatPhoneNumber(input: string) {
   // Remove any non-digit characters from the input
-  const digitsOnly = input.replace(/\D/g, "");
+  const digitsOnly = input?.toString()?.replace(/\D/g, "");
 
   // Split the digits into groups using regex
-  const groups = digitsOnly.match(/^(\d{4})(\d{3})(\d{3})$/);
+  const groups = digitsOnly?.match(/^(\d{4})(\d{3})(\d{3})$/);
 
   if (groups) {
     // Format the digits into the desired format

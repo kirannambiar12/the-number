@@ -4355,6 +4355,11 @@ react-query@^3.39.3:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
+react-rater@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/react-rater/-/react-rater-6.0.5.tgz#e0746071ac0a7a28fc61d7508e795b9469792dc3"
+  integrity sha512-ke4gyTNQCKSVYt0YHe3yN6IktSKbXNeAueLhfWFVc/nZ+O1N8up6qb/pzoyzfnFjoYeH66dmMgs10ZkuVQLKQQ==
+
 react-redux@^8.0.5:
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.0.5.tgz#e5fb8331993a019b8aaf2e167a93d10af469c7bd"
