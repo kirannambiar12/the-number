@@ -24,7 +24,7 @@ const Intro = () => {
         </div>
         <div className="flex flex-col justify-center mx-auto h-full">
           <Image
-            className="h-auto max-w-xl"
+            className="h-auto max-w-xl hover:scale-75 ease-in duration-500"
             src={hacker}
             alt="The Number Homepage Hacker"
           />
