@@ -1,5 +1,6 @@
 import { AppProps } from "next/app";
-import "@/app/global/styles/globals.css";
+import "../styles/globals.css";
+import "../app/global/styles/index.css";
 import Toast from "@/app/global/components/toast";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
