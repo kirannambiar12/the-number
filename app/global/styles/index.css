@@ -16,19 +16,19 @@ select:-webkit-autofill:focus {
   background-color: black;
 }
 
-/* @font-face {
+@font-face {
   font-family: "FaseBulan";
-  src: url("../app/global/assets/fonts/FaseBulan-BW633.otf");
+  src: url("../assets/fonts/FaseBulan-BW633.otf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Electronic";
-  src: url("../app/global/assets/fonts/Electrolize-Regular.ttf");
+  src: url("../assets/fonts/Electrolize-Regular.ttf");
   font-weight: normal;
   font-style: normal;
-} */
+}
 
 .link {
   border-bottom-width: 0;
