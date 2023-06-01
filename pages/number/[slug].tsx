@@ -21,14 +21,16 @@ export const getServerSideProps = async (pageContext: any) => {
         collectionName: "numbers",
       })
       .then((resp) => {
-        if (resp.data.status === 200) {
-          data = resp?.data?.doc;
+        if (resp.data.status === 201) {
+          data = resp?.data;
         } else {
           throw new Error("No such document!");
         }
       });
-  } catch (error) {
-    console.log("Error:", error);
+  } catch (err) {
+    return {
+      notFound: true,
+    };
   }
 
   return {

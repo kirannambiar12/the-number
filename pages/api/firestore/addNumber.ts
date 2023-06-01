@@ -6,6 +6,9 @@ import { nanoid } from "nanoid";
 interface DocumentData {
   uid: string;
   phoneNumber: number;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
   ratings?: {
     score: number;
   };
@@ -55,15 +58,19 @@ export default async function handler(
       await setDoc(doc(db, collectionName, number), {
         ...document,
         uid: id,
+        ratings: {
+          score: 5.0,
+        },
       });
       const numberDoc = await fetchDocument();
       return res.status(200).json({
-        status: 200,
+        status: 201,
         message: "Successfully created a new doc!",
         doc: numberDoc.data() as DocumentData,
       });
     }
   } catch (error) {
+    console.log("🚀 ~ file: addNumber.ts:73 ~ error:", error);
     return res
       .status(500)
       .json({ status: 500, message: `An error occurred: ${error}` });
