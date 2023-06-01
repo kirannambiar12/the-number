@@ -1,10 +1,25 @@
-import { formatPhoneNumber, getSVGComponent } from "@/app/global/utils";
+import { formatPhoneNumber } from "@/app/global/utils";
+import { toastActions } from "@/app/store/Toast/slice";
 import React from "react";
 import Rater from "react-rater";
 import "react-rater/lib/react-rater.css";
+import { useDispatch } from "react-redux";
 
 const NumberDetail = ({ data }: any) => {
+  const dispatch = useDispatch();
   const { phoneNumber, ratings } = data?.doc;
+
+  if (data?.status === 201) {
+    dispatch(
+      toastActions.displayToast({
+        message: `We have created a entry for (+91) ${formatPhoneNumber(
+          phoneNumber
+        )}.`,
+        type: "success",
+      })
+    );
+  }
+
   return (
     <div className="mt-52 min-h-screen">
       <h1 className="font-[FaseBulan] text-9xl text-center">

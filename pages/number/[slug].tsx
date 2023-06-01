@@ -21,7 +21,8 @@ export const getServerSideProps = async (pageContext: any) => {
         collectionName: "numbers",
       })
       .then((resp) => {
-        if (resp.data.status === 201) {
+        const status = resp.data.status;
+        if (status === 201 || status === 200) {
           data = resp?.data;
         } else {
           throw new Error("No such document!");

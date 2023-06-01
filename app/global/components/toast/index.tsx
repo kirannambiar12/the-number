@@ -15,9 +15,13 @@ const Toast = () => {
   return (
     <div
       id="toast-top-left"
-      className={`flex items-center w-full max-w-md p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 sticky top-5 ml-auto mr-5 ${
-        !toast?.message && "hidden"
-      }`}
+      className={`flex items-center w-full max-w-md p-4 mb-4 text-${
+        typeToColorMapper?.[toast?.type]
+      }-500 bg-white rounded-lg shadow dark:text-${
+        typeToColorMapper?.[toast?.type]
+      }-400 dark:bg-${
+        typeToColorMapper?.[toast?.type]
+      }-800 sticky top-5 ml-auto mr-5 ${!toast?.message && "hidden"}`}
       role="alert"
     >
       <div
@@ -33,14 +37,26 @@ const Toast = () => {
       <div
         className={`ml-3 text-sm font-normal text-${
           typeToColorMapper?.[toast?.type]
-        }-700`}
+        }-700 dark:text-${typeToColorMapper?.[toast?.type]}-400 `}
       >
         {toast?.message}
       </div>
       <button
         type="button"
         onClick={onClose}
-        className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        className={`ml-auto -mx-1.5 -my-1.5 bg-white text-${
+          typeToColorMapper?.[toast?.type]
+        }-400 hover:text-${
+          typeToColorMapper?.[toast?.type]
+        }-900 rounded-lg focus:ring-2 focus:ring-${
+          typeToColorMapper?.[toast?.type]
+        }-300 p-1.5 hover:bg-${
+          typeToColorMapper?.[toast?.type]
+        }-100 inline-flex h-8 w-8 dark:text-${
+          typeToColorMapper?.[toast?.type]
+        }-800 dark:hover:text-${typeToColorMapper?.[toast?.type]}-800 dark:bg-${
+          typeToColorMapper?.[toast?.type]
+        }-800 dark:hover:bg-${typeToColorMapper?.[toast?.type]}-700`}
         aria-label="Close"
       >
         <span className="sr-only">Close</span>
