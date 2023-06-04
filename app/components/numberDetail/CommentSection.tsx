@@ -21,14 +21,10 @@ const CommentSection = ({ uid }: { uid: string }) => {
   );
 
   const date = new Date().toDateString();
-  console.log(
-    "🚀 ~ file: CommentSection.tsx:15 ~ CommentSection ~ data:",
-    data
-  );
 
   return (
     <div
-      className="mt-36 m-auto bg-neutral-900 pt-6 pb-14 h-screen"
+      className="m-auto bg-neutral-900 pt-44 pb-14 h-screen"
       id="commentSection"
     >
       <div className="container m-auto px-36">
@@ -38,7 +34,7 @@ const CommentSection = ({ uid }: { uid: string }) => {
       </div>
       <div className="container m-auto px-36">
         {data?.map((user: any) => (
-          <>
+          <div key={user.uid}>
             <div className="flex rounded-sm border border-white">
               <Image
                 className="rounded-full border border-blue-600 p-[2px] bg-white self-center relative -left-5"
@@ -54,7 +50,7 @@ const CommentSection = ({ uid }: { uid: string }) => {
             </div>
             <p className="ml-12 mt-5">{user.message}</p>
             {user?.comment?.map((data: any) => (
-              <div className="ml-12 mt-5">
+              <div key={data.uid} className="ml-12 mt-5">
                 <div className="flex rounded-sm border border-white">
                   <Image
                     className="rounded-full border border-blue-600 p-[2px] bg-white self-center relative -left-5"
@@ -71,7 +67,7 @@ const CommentSection = ({ uid }: { uid: string }) => {
                 <p className="ml-12 mt-5">{data.message}</p>
               </div>
             ))}
-          </>
+          </div>
         ))}
       </div>
     </div>

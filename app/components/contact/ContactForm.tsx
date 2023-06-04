@@ -4,7 +4,6 @@ import Subject from "@/app/global/assets/svgs/Subject";
 import Textarea from "@/app/global/components/fields/Textarea";
 import Textfield from "@/app/global/components/fields/Textfield";
 import { getSVGComponent } from "@/app/global/utils";
-import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import { useForm } from "react-hook-form";
 

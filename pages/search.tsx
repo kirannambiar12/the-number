@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { formatPhoneNumber, isNumber } from "@/app/global/utils";
+import layeredBg from "@/app/global/assets/svgs/topography.svg";
 
 export default function SearchPage() {
   const { push } = useRouter();
@@ -9,7 +10,13 @@ export default function SearchPage() {
   const isTenDigits = query.length === 12;
 
   return (
-    <div className="container-sm h-screen flex flex-col justify-center">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+      }}
+      className="container-sm h-screen flex flex-col justify-center"
+    >
       <div className="flex flex-col justify-center">
         <input
           type="string"

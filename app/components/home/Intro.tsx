@@ -18,8 +18,8 @@ const Intro = () => {
             individuals can come together to share their experiences, provide
             ratings, and voice their opinions about mobile numbers. Our platform
             is designed to empower users with valuable insights, enabling them
-            to make informed decisions and stay connected in today's digital
-            age.
+            to make informed decisions and stay connected in today&lsquo;s
+            digital age.
           </p>
         </div>
         <div className="flex flex-col justify-center mx-auto h-full">

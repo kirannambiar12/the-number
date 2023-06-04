@@ -1,6 +1,6 @@
 import bg from "@/app/global/assets/images/contact-bg.jpg";
-import ContactForm from "./Form";
 import { navigation } from "@/app/global/constants";
+import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (

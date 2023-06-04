@@ -8,7 +8,7 @@ import { RQClient } from "@/app/global/configStore/reactQuery";
 import Navbar from "@/app/global/components/navbar";
 import { QueryClientProvider } from "@tanstack/react-query";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: any) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={RQClient}>
