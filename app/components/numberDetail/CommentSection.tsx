@@ -37,6 +37,7 @@ const CommentSection = ({ uid }: { uid: string }) => {
             <IndividualComment user={user} setIsClosed={setIsClosed} />
             {user?.comment?.map((data: any) => (
               <IndividualComment
+                key={data.uid}
                 user={data}
                 isReply
                 setIsClosed={setIsClosed}
