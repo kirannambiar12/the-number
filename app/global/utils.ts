@@ -1,3 +1,5 @@
+import { db } from "@/app/global/configStore/firebase";
+import { doc, getDoc } from "firebase/firestore";
 export function getSVGComponent(
   svgComponent: React.JSX.Element
 ): React.JSX.Element {
@@ -25,3 +27,9 @@ export function isNumber(input: string) {
   const numberRegex = /^[0-9]+$/;
   return numberRegex.test(input);
 }
+
+export const getIsMaintenanceMode = async () => {
+  const document = await getDoc(doc(db, "config", "vYAbIgAoZGQqEfCPNFXN"));
+  const data = document.data();
+  return data;
+};

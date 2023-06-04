@@ -19,11 +19,7 @@ module.exports = {
     "./app/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: [
-    {
-      pattern: /(bg|text|border)-./,
-    },
-  ],
+  safelist: [],
   options: {},
   plugins: [],
 };

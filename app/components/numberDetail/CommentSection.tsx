@@ -1,20 +1,13 @@
-import { db } from "@/app/global/configStore/firebase";
 import { useQuery } from "@tanstack/react-query";
-import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import React from "react";
 import avatar from "@/app/global/assets/images/avatar.png";
+import { getComments } from "./util";
 
 const CommentSection = ({ uid }: { uid: string }) => {
-  const getComments = async () => {
-    const document = await getDoc(doc(db, "comments", uid));
-    const data = document.data();
-    return data;
-  };
-
   const { data } = useQuery(
     ["user-comments", uid],
-    async () => await getComments(),
+    async () => await getComments(uid),
     {
       select: (resp) => resp?.userComments,
     }

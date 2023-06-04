@@ -1,13 +1,25 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { formatPhoneNumber, isNumber } from "@/app/global/utils";
+import {
+  formatPhoneNumber,
+  getIsMaintenanceMode,
+  isNumber,
+} from "@/app/global/utils";
 import layeredBg from "@/app/global/assets/svgs/topography.svg";
+import { useQuery } from "@tanstack/react-query";
+import AlertModal from "@/app/global/components/modal/AlertModal";
 
 export default function SearchPage() {
   const { push } = useRouter();
   const [query, setQuery] = useState<string>("");
-
   const isTenDigits = query.length === 12;
+
+  const { data } = useQuery(
+    ["maintenance-mode"],
+    async () => await getIsMaintenanceMode()
+  );
+
+  if (data?.isInMaintainanceMode) return <AlertModal />;
 
   return (
     <div
