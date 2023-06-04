@@ -1,9 +1,9 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../configStore/firebase";
 import { useRouter } from "next/router";
-import { useMutation } from "react-query";
 import { toastActions } from "@/app/store/Toast/slice";
 import { store } from "@/app/store";
+import { useMutation } from "@tanstack/react-query";
 
 type SignIn = {
   email: string;

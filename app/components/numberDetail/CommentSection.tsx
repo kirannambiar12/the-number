@@ -1,7 +1,9 @@
 import { db } from "@/app/global/configStore/firebase";
 import { useQuery } from "@tanstack/react-query";
 import { doc, getDoc } from "firebase/firestore";
+import Image from "next/image";
 import React from "react";
+import avatar from "@/app/global/assets/images/avatar.png";
 
 const CommentSection = ({ uid }: { uid: string }) => {
   const getComments = async () => {
@@ -12,18 +14,67 @@ const CommentSection = ({ uid }: { uid: string }) => {
 
   const { data } = useQuery(
     ["user-comments", uid],
-    async () => await getComments()
+    async () => await getComments(),
+    {
+      select: (resp) => resp?.userComments,
+    }
   );
 
+  const date = new Date().toDateString();
   console.log(
     "🚀 ~ file: CommentSection.tsx:15 ~ CommentSection ~ data:",
     data
   );
 
   return (
-    <>
-      <div>CommentSection</div>
-    </>
+    <div
+      className="mt-36 m-auto bg-neutral-900 pt-6 pb-14 h-screen"
+      id="commentSection"
+    >
+      <div className="container m-auto px-36">
+        <h4 className="font-[Electronic] text-3xl mb-12 uppercase mt-10 -ml-5">
+          Comments
+        </h4>
+      </div>
+      <div className="container m-auto px-36">
+        {data?.map((user: any) => (
+          <>
+            <div className="flex rounded-sm border border-white">
+              <Image
+                className="rounded-full border border-blue-600 p-[2px] bg-white self-center relative -left-5"
+                src={avatar}
+                width={35}
+                height={35}
+                alt="User Avatar"
+              />
+              <div className="flex ml-2 items-center">
+                <span>{`${user.firstName} ${user.lastName}`}</span>
+                <p className="text-xs text-gray-500 ml-5">{date}</p>
+              </div>
+            </div>
+            <p className="ml-12 mt-5">{user.message}</p>
+            {user?.comment?.map((data: any) => (
+              <div className="ml-12 mt-5">
+                <div className="flex rounded-sm border border-white">
+                  <Image
+                    className="rounded-full border border-blue-600 p-[2px] bg-white self-center relative -left-5"
+                    src={avatar}
+                    width={35}
+                    height={35}
+                    alt="User Avatar"
+                  />
+                  <div className="flex ml-2 items-center">
+                    <span>{`${user.firstName} ${user.lastName}`}</span>
+                    <p className="text-xs text-gray-500 ml-5">{date}</p>
+                  </div>
+                </div>
+                <p className="ml-12 mt-5">{data.message}</p>
+              </div>
+            ))}
+          </>
+        ))}
+      </div>
+    </div>
   );
 };
 
