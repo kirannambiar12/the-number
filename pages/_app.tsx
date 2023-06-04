@@ -7,17 +7,21 @@ import { RQClient } from "@/app/global/configStore/reactQuery";
 import Navbar from "@/app/global/components/navbar";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
+import SeoHead from "@/app/global/seo";
 
 function MyApp({ Component, pageProps }: any) {
   return (
-    <Provider store={store}>
-      <QueryClientProvider client={RQClient}>
-        <Navbar />
-        <Toast />
-        <Component {...pageProps} />
-        <Analytics />
-      </QueryClientProvider>
-    </Provider>
+    <>
+      <SeoHead />
+      <Provider store={store}>
+        <QueryClientProvider client={RQClient}>
+          <Navbar />
+          <Toast />
+          <Component {...pageProps} />
+          <Analytics />
+        </QueryClientProvider>
+      </Provider>
+    </>
   );
 }
 
