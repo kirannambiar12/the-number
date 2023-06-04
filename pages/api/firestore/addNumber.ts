@@ -57,6 +57,7 @@ export default async function handler(
     } else {
       await setDoc(doc(db, collectionName, number), {
         ...document,
+        createdAt: new Date(),
         uid: id,
         ratings: {
           score: 5.0,

@@ -1,8 +1,17 @@
 import React from "react";
+import layeredBg from "@/app/global/assets/svgs/rain.svg";
 
 const HowDoesItWork = () => {
   return (
-    <div className="h-full mt-24 px-10 md:px-20 pb-20">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "1% 20px",
+      }}
+      className="min-h-screen mt-32 px-10 md:px-20 pb-20 flex flex-col justify-center"
+    >
       <h1 className="font-[FaseBulan] text-8xl text-center">
         How does it work?
       </h1>

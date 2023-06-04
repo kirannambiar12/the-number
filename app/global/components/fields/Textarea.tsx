@@ -23,11 +23,13 @@ const Textarea = ({
         rows={5}
         cols={50}
       />
-      <label htmlFor={id} className={labelClassName}>
-        <div className="flex">
-          {icon} <span className="ml-3">{placeholder}</span>
-        </div>
-      </label>
+      {placeholder && (
+        <label htmlFor={id} className={labelClassName}>
+          <div className="flex">
+            {icon} <span className="ml-3">{placeholder}</span>
+          </div>
+        </label>
+      )}
       {errors?.[name] && (
         <span className="text-red-600 text-xs">
           {errors?.[name]?.message as string}

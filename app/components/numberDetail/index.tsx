@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import CommentSection from "./CommentSection";
 import scroll from "@/app/global/assets/images/scroll.png";
 import Image from "next/image";
+import layeredBg from "@/app/global/assets/svgs/4-point-stars.svg";
 
 const NumberDetail = ({ data }: any) => {
   const dispatch = useDispatch();
@@ -25,7 +26,15 @@ const NumberDetail = ({ data }: any) => {
 
   return (
     <>
-      <div className="h-screen min-h-screen flex flex-col justify-center">
+      <div
+        style={{
+          backgroundColor: "#000000",
+          backgroundImage: `url(${layeredBg.src})`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "1% 10px",
+        }}
+        className="h-screen min-h-screen flex flex-col justify-center"
+      >
         <div>
           <h1 className="font-[FaseBulan] text-9xl text-center">
             {phoneNumber && `(+91) ${formatPhoneNumber(phoneNumber)}`}
@@ -56,7 +65,7 @@ const NumberDetail = ({ data }: any) => {
             width={70}
             height={70}
             src={scroll}
-            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer animate-bounce"
+            className="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer animate-bounce"
             alt="thick-arrow-pointing-down"
           />
         </a>

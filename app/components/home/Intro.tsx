@@ -1,9 +1,19 @@
 import React from "react";
 import hacker from "@/app/global/assets/images/hacker.png";
 import Image from "next/image";
+import layeredBg from "@/app/global/assets/svgs/texture.svg";
+
 const Intro = () => {
   return (
-    <div className="min-h-screen px-10 md:px-20 flex flex-col justify-center">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "1% 20px",
+      }}
+      className="min-h-screen px-10 md:px-20 flex flex-col justify-center mb-36"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 h-full mt-32">
         <div className="flex flex-col justify-center mx-auto h-full">
           <h1 className="font-[FaseBulan] text-8xl ">Welcome to TN,</h1>

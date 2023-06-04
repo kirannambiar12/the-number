@@ -1,6 +1,7 @@
 import React from "react";
 import { useLottie, useLottieInteractivity } from "lottie-react";
 import vision from "@/app/global/assets/lottie/vision.json";
+import layeredBg from "@/app/global/assets/svgs/aztec.svg";
 
 const Vision = () => {
   const options = {
@@ -19,7 +20,15 @@ const Vision = () => {
     ],
   });
   return (
-    <div className="h-screen flex flex-col justify-evenly px-10 md:px-20">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "2% 50px",
+      }}
+      className="min-h-screen flex flex-col justify-evenly px-10 md:px-20"
+    >
       <div className="max-w-sm block mx-auto"> {Animation}</div>
       <div className="max-w-4xl mx-auto">
         <p className="font-[Electronic] text-xl">
