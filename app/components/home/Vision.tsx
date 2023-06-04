@@ -19,7 +19,7 @@ const Vision = () => {
     ],
   });
   return (
-    <div className="h-screen flex flex-col justify-evenly">
+    <div className="h-screen flex flex-col justify-evenly px-10 md:px-20">
       <div className="max-w-sm block mx-auto"> {Animation}</div>
       <div className="max-w-4xl mx-auto">
         <p className="font-[Electronic] text-xl">

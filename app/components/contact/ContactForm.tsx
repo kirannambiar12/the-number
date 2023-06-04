@@ -22,7 +22,7 @@ const ContactForm = () => {
 
   return (
     <form
-      className="max-w-lg mx-auto flex flex-col relative px-10"
+      className="max-w-full mx-auto flex flex-col relative px-10"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="relative mb-3">

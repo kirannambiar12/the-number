@@ -10,18 +10,18 @@ const Contact = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="h-screen flex flex-col justify-center backdrop-blur-md"
+      className="min-h-screen flex flex-col justify-center backdrop-blur-md"
     >
-      <div className="grid grid-cols-2">
-        <div className="text-center flex flex-col justify-center px-32">
-          <h1 className="font-[FaseBulan] text-8xl">Contact Us</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="text-center flex flex-col justify-center px-10 lg:px-32">
+          <h1 className="font-[FaseBulan] text-8xl mt-20">Contact Us</h1>
           <p className="font-[Electronic] text-xl">
             We value your feedback and are always looking for ways to improve
             our services. If you have any complaints, discrepancies, or anything
             else you would like to share with us, please use the form.
           </p>
         </div>
-        <div className="h-screen w-full px-16 py-16">
+        <div className="h-screen w-full px-5 md:px-16 py-16">
           <div className="h-full w-full bg-black pt-3">
             <div className="h-full flex flex-col justify-evenly">
               <div className="flex space-x-4 mx-auto justify-center">

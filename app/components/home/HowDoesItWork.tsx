@@ -2,7 +2,7 @@ import React from "react";
 
 const HowDoesItWork = () => {
   return (
-    <div className="h-full pb-28 mt-24">
+    <div className="h-full mt-24 px-10 md:px-20 pb-20">
       <h1 className="font-[FaseBulan] text-8xl text-center">
         How does it work?
       </h1>
