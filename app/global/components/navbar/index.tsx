@@ -4,6 +4,7 @@ import { navigation } from "../../constants";
 import { useRouter } from "next/router";
 import logo from "@/app/global/assets/gif/logo.gif";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Navbar() {
   const { pathname, push } = useRouter();
@@ -40,7 +41,7 @@ export default function Navbar() {
                 <div className="hidden relative -left-7 sm:block mx-auto">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={"rounded-md px-3 py-2 text-sm font-medium"}
@@ -55,9 +56,23 @@ export default function Navbar() {
                         >
                           {item.name}
                         </span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
+                </div>
+                <div>
+                  <Link
+                    href="/login"
+                    className={"rounded-md px-3 py-2 text-sm font-medium"}
+                  >
+                    <span
+                      className={`${
+                        pathname === "/login" && "active-link"
+                      } link link-underline pb-1`}
+                    >
+                      Login
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
