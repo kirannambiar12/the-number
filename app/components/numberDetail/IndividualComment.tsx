@@ -2,8 +2,12 @@ import Image from "next/image";
 import React from "react";
 import avatar from "@/app/global/assets/images/avatar.png";
 
-const IndividualComment = ({ user, isReply, setIsClosed }: any) => {
-  const date = new Date().toDateString();
+const IndividualComment = ({ user, isReply, setIsClosed, setUserId }: any) => {
+  const onReplyClick = () => {
+    setUserId(user?.firstName + user?.lastName);
+    setIsClosed(false);
+  };
+
   return (
     <>
       <div
@@ -19,11 +23,11 @@ const IndividualComment = ({ user, isReply, setIsClosed }: any) => {
         <div className="flex ml-2 justify-between w-full">
           <div className="flex items-center">
             <span>{`${user.firstName} ${user.lastName}`}</span>
-            <p className="text-xs text-gray-500 ml-5">{date}</p>
+            <p className="text-xs text-gray-500 ml-5">{user?.createdAt}</p>
           </div>
           <div className="mr-5 flex items-center">
             <span
-              onClick={() => setIsClosed(false)}
+              onClick={onReplyClick}
               className="text-blue-600 hover:underline cursor-pointer"
             >
               Reply

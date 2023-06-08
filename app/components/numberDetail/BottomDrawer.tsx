@@ -1,6 +1,6 @@
 import React from "react";
 
-const BottomDrawer = ({ isClosed, setIsClosed }: any) => {
+const BottomDrawer = ({ isClosed, setIsClosed, userName }: any) => {
   return (
     <div
       id="drawer-bottom-example"
@@ -19,7 +19,7 @@ const BottomDrawer = ({ isClosed, setIsClosed }: any) => {
           name="comment"
           className={`mb-8 caret-white w-full peer border-2 m-0 block rounded bg-transparent bg-clip-padding px-3 text-base font-normal leading-tight text-gray-200 transition duration-200 ease-linear focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-gray-300 focus:outline-none peer-focus:text-primary dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem] h-20`}
           id="comment"
-          placeholder={"Enter your comment here..."}
+          placeholder={`You are replying to @${userName}`}
         />
         <div className="flex">
           <button
