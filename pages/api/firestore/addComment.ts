@@ -1,5 +1,5 @@
 import { db } from "@/app/global/configStore/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import { nanoid } from "nanoid";
 
@@ -9,6 +9,7 @@ interface DocumentData {
   userId: string;
   firstName: string;
   lastName: string;
+  parentCommentId: string;
   type: "COMMENT" | "REPLY";
 }
 
@@ -31,20 +32,30 @@ export default async function handler(
   };
 
   const id = nanoid();
-  const msg = document?.userId;
+  const userId = document?.userId;
+  const msg = document?.message;
 
   if (!!msg)
     return res.status(400).json({ status: 405, message: "Message is blank" });
-
   try {
-    await setDoc(doc(db, collectionName, msg), {
-      ...document,
-      uid: id,
-    });
-    return res.status(200).json({
-      status: 201,
-      message: "Added a comment",
-    });
+    if (document?.type === "REPLY") {
+      await updateDoc(doc(db, collectionName, userId), {
+        "userComments.comment": arrayUnion(document),
+      });
+      return res.status(200).json({
+        status: 201,
+        message: "Added a reply",
+      });
+    } else {
+      await setDoc(doc(db, collectionName, userId), {
+        ...document,
+        uid: id,
+      });
+      return res.status(200).json({
+        status: 201,
+        message: "Added a comment",
+      });
+    }
   } catch (error) {
     return res
       .status(500)

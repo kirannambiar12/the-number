@@ -5,9 +5,16 @@ import layeredBg from "@/app/global/assets/svgs/hexagons.svg";
 import IndividualComment from "./IndividualComment";
 import BottomDrawer from "@/app/components/numberDetail/BottomDrawer";
 
+type CommentDocTypes = {
+  firstName: string;
+  lastName: string;
+  message: string;
+  parentCommentId: string;
+  type: "REPLY" | "COMMENT";
+} | null;
 const CommentSection = ({ uid }: { uid: string }) => {
-  const [isClosed, setIsClosed] = useState<boolean>(true);
-  const [userName, setUserId] = useState(null);
+  const [isClosed, setIsClosed] = useState<boolean>(false);
+  const [commentData, setCommentData] = useState<CommentDocTypes>(null);
 
   const { data } = useQuery(
     ["user-comments", uid],
@@ -33,20 +40,20 @@ const CommentSection = ({ uid }: { uid: string }) => {
         </h4>
       </div>
       <div className="container m-auto px-36">
-        {data?.map((user: any) => (
+        {data?.comment?.map((user: any) => (
           <div key={user.uid}>
             <IndividualComment
               user={user}
               setIsClosed={setIsClosed}
-              setUserId={setUserId}
+              setCommentData={setCommentData}
             />
             {user?.comment?.map((data: any) => (
               <IndividualComment
                 key={data.uid}
-                user={data}
+                user={{ ...data, userId: user?.userId }}
                 isReply
                 setIsClosed={setIsClosed}
-                setUserId={setUserId}
+                setCommentData={setCommentData}
               />
             ))}
           </div>
@@ -55,7 +62,7 @@ const CommentSection = ({ uid }: { uid: string }) => {
       <BottomDrawer
         setIsClosed={setIsClosed}
         isClosed={isClosed}
-        userName={userName}
+        addCommentObj={commentData}
       />
     </div>
   );

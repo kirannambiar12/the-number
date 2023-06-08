@@ -1,6 +1,11 @@
-import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import React, { useState } from "react";
+import { addComment } from "./util";
 
-const BottomDrawer = ({ isClosed, setIsClosed, userName }: any) => {
+const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
+  const [message, setMessage] = useState<string>("");
+  const { mutate } = useMutation(addComment);
+
   return (
     <div
       id="drawer-bottom-example"
@@ -19,10 +24,18 @@ const BottomDrawer = ({ isClosed, setIsClosed, userName }: any) => {
           name="comment"
           className={`mb-8 caret-white w-full peer border-2 m-0 block rounded bg-transparent bg-clip-padding px-3 text-base font-normal leading-tight text-gray-200 transition duration-200 ease-linear focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-gray-300 focus:outline-none peer-focus:text-primary dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem] h-20`}
           id="comment"
-          placeholder={`You are replying to @${userName}`}
+          placeholder={`You are replying to @${"kiran"}`}
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
         />
         <div className="flex">
           <button
+            onClick={() =>
+              mutate({
+                collectionName: "comments",
+                doc: { ...addCommentObj, msg: message },
+              })
+            }
             type="button"
             className="text-white bg-blue-600 hover:bg-blue-800 w-36 text-center focus:outline-none font-medium rounded-lg text-sm items-center px-5 py-2.5"
           >

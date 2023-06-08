@@ -2,9 +2,21 @@ import Image from "next/image";
 import React from "react";
 import avatar from "@/app/global/assets/images/avatar.png";
 
-const IndividualComment = ({ user, isReply, setIsClosed, setUserId }: any) => {
+const IndividualComment = ({
+  user,
+  isReply,
+  setIsClosed,
+  setCommentData,
+}: any) => {
   const onReplyClick = () => {
-    setUserId(user?.firstName + user?.lastName);
+    console.log(user);
+    setCommentData({
+      firstName: "Anonymous",
+      lastName: "Anonymous",
+      type: "REPLY",
+      ...(user?.parentCommentId && { parentCommentId: user?.parentCommentId }),
+      userId: "9IDayQHcoqTPswgYApQ2",
+    });
     setIsClosed(false);
   };
 
