@@ -19,7 +19,14 @@ module.exports = {
     "./app/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: [],
+  safelist: [
+    "text-green-500",
+    "text-red-500",
+    "text-orange-500",
+    "bg-green-100",
+    "bg-red-100",
+    "bg-orange-100",
+  ],
   options: {},
   plugins: [],
 };
