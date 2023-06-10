@@ -4,7 +4,12 @@ import { addComment } from "./util";
 
 const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
   const [message, setMessage] = useState<string>("");
-  const { mutate } = useMutation(addComment);
+  const { mutate } = useMutation(addComment, {
+    onSuccess: () => {
+      setIsClosed(true);
+      setMessage("");
+    },
+  });
 
   return (
     <div
@@ -24,7 +29,7 @@ const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
           name="comment"
           className={`mb-8 caret-white w-full peer border-2 m-0 block rounded bg-transparent bg-clip-padding px-3 text-base font-normal leading-tight text-gray-200 transition duration-200 ease-linear focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-gray-300 focus:outline-none peer-focus:text-primary dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem] h-20`}
           id="comment"
-          placeholder={`You are replying to @${"kiran"}`}
+          placeholder={`You are replying to @${addCommentObj?.firstName}`}
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />

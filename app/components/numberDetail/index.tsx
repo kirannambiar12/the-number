@@ -11,7 +11,7 @@ import layeredBg from "@/app/global/assets/svgs/4-point-stars.svg";
 
 const NumberDetail = ({ data }: any) => {
   const dispatch = useDispatch();
-  const { phoneNumber, ratings } = data?.doc;
+  const { phoneNumber, ratings, uid } = data?.doc;
 
   if (data?.status === 201) {
     dispatch(
@@ -70,7 +70,7 @@ const NumberDetail = ({ data }: any) => {
           />
         </a>
       </div>
-      <CommentSection uid={data?.doc?.uid?.trim()} />
+      <CommentSection nid={uid?.trim()} />
     </>
   );
 };

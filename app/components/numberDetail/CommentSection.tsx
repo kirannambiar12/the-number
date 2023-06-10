@@ -9,20 +9,31 @@ type CommentDocTypes = {
   firstName: string;
   lastName: string;
   message: string;
-  parentCommentId: string;
   type: "REPLY" | "COMMENT";
+  parentCommentId?: string;
+  nid?: string;
 } | null;
-const CommentSection = ({ uid }: { uid: string }) => {
-  const [isClosed, setIsClosed] = useState<boolean>(false);
+const CommentSection = ({ nid }: { nid: string }) => {
+  const [isClosed, setIsClosed] = useState<boolean>(true);
   const [commentData, setCommentData] = useState<CommentDocTypes>(null);
 
   const { data } = useQuery(
-    ["user-comments", uid],
-    async () => await getComments(uid),
+    ["user-comments", nid],
+    async () => await getComments(nid),
     {
       select: (resp) => resp?.userComments,
     }
   );
+
+  const onAddComment = () => {
+    setCommentData({
+      firstName: "Anonymous",
+      lastName: "Anonymous",
+      type: "COMMENT",
+      nid: nid,
+    } as any);
+    setIsClosed(false);
+  };
 
   return (
     <div
@@ -40,16 +51,21 @@ const CommentSection = ({ uid }: { uid: string }) => {
         </h4>
       </div>
       <div className="container m-auto px-36">
-        {data?.comment?.map((user: any) => (
+        <h5 className="mb-10 cursor-pointer" onClick={onAddComment}>
+          Add a comment
+        </h5>
+        {data?.replies?.map((user: any) => (
           <div key={user.uid}>
             <IndividualComment
+              nid={nid}
               user={user}
               setIsClosed={setIsClosed}
               setCommentData={setCommentData}
             />
-            {user?.comment?.map((data: any) => (
+            {user?.replies?.map((data: any) => (
               <IndividualComment
                 key={data.uid}
+                nid={nid}
                 user={{ ...data, userId: user?.userId }}
                 isReply
                 setIsClosed={setIsClosed}

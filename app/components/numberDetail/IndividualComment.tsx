@@ -7,15 +7,15 @@ const IndividualComment = ({
   isReply,
   setIsClosed,
   setCommentData,
+  nid,
 }: any) => {
   const onReplyClick = () => {
-    console.log(user);
     setCommentData({
       firstName: "Anonymous",
       lastName: "Anonymous",
       type: "REPLY",
       ...(user?.parentCommentId && { parentCommentId: user?.parentCommentId }),
-      userId: "9IDayQHcoqTPswgYApQ2",
+      nid: nid,
     });
     setIsClosed(false);
   };
