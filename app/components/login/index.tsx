@@ -8,6 +8,7 @@ import { loginValidationSchema } from "./resolver";
 import { LoginFieldType } from "./types";
 import Textfield from "@/app/global/components/fields/Textfield";
 import { getSVGComponent } from "@/app/global/utils";
+import layeredBg from "@/app/global/assets/svgs/hexagons.svg";
 
 const Login = () => {
   const {
@@ -26,7 +27,15 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col content-center min-h-screen">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "3% 50px",
+      }}
+      className="flex flex-col content-center min-h-screen"
+    >
       <form
         className="rounded-lg m-auto max-w-lg w-screen"
         onSubmit={handleSubmit(onSubmit)}

@@ -8,6 +8,7 @@ import Textfield from "@/app/global/components/fields/Textfield";
 import { getSVGComponent } from "@/app/global/utils";
 import { registerValidationSchema } from "./resolver";
 import { useRegister } from "@/app/global/hooks/auth/useRegister";
+import layeredBg from "@/app/global/assets/svgs/texture.svg";
 
 const Register = () => {
   const {
@@ -26,7 +27,15 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col content-center min-h-screen">
+    <div
+      style={{
+        backgroundColor: "#000000",
+        backgroundImage: `url(${layeredBg.src})`,
+        backgroundRepeat: "repeat",
+        backgroundSize: "2% 50px",
+      }}
+      className="flex flex-col content-center min-h-screen"
+    >
       <form
         className="rounded-lg m-auto max-w-lg w-screen"
         onSubmit={handleSubmit(onSubmit)}

@@ -1,9 +1,14 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { auth } from "../../configStore/firebase";
 import { useRouter } from "next/router";
 import { toastActions } from "@/app/store/Toast/slice";
 import { store } from "@/app/store";
 import { useMutation } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 type SignIn = {
   email: string;
@@ -11,6 +16,7 @@ type SignIn = {
 };
 
 export const useLogin = () => {
+  const [isAuth, setIsAuth] = useState();
   const { push } = useRouter();
 
   const mutate = useMutation(
@@ -41,11 +47,23 @@ export const useLogin = () => {
     return auth?.currentUser;
   };
 
-  const isAuthenticated = getUserAuthDetails()?.uid;
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setIsAuth(!!user?.uid as any);
+      return user;
+    });
+  }, []);
+
+  const logout = () => {
+    signOut(auth).then(() => {
+      push("/");
+    });
+  };
 
   return {
     ...mutate,
-    isAuthenticated,
+    isAuthenticated: isAuth,
     getUserAuthDetails,
+    logout,
   };
 };

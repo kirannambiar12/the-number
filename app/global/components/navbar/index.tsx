@@ -1,15 +1,15 @@
 import { Disclosure } from "@headlessui/react";
-import { useNav } from "../../hooks/auth/useNav";
 import { navigation } from "../../constants";
 import { useRouter } from "next/router";
 import logo from "@/app/global/assets/gif/logo.gif";
 import Image from "next/image";
 import Link from "next/link";
+import { useLogin } from "../../hooks/auth/useLogin";
 
 export default function Navbar() {
   const { pathname, push } = useRouter();
-  const { isNavVisible } = useNav();
-  if (!isNavVisible) return null;
+  const { isAuthenticated, logout } = useLogin();
+
   return (
     <Disclosure as="nav" className="pt-5 absolute top-0 left-0 w-screen">
       {({ open }) => (
@@ -60,20 +60,45 @@ export default function Navbar() {
                     ))}
                   </div>
                 </div>
-                <div>
-                  <Link
-                    href="/login"
-                    className={"rounded-md px-3 py-2 text-sm font-medium"}
-                  >
-                    <span
-                      className={`${
-                        pathname === "/login" && "active-link"
-                      } link link-underline pb-1`}
+                {!isAuthenticated ? (
+                  <div>
+                    <Link
+                      href="/login"
+                      className={"rounded-md px-3 py-2 text-sm font-medium"}
                     >
-                      Login
+                      <span
+                        className={`${
+                          pathname === "/login" && "active-link"
+                        } link link-underline pb-1`}
+                      >
+                        Login
+                      </span>
+                    </Link>
+                    <Link
+                      href="/register"
+                      className={"rounded-md px-3 py-2 text-sm font-medium"}
+                    >
+                      <span
+                        className={`ml-5 ${
+                          pathname === "/register" && "active-link"
+                        } link link-underline pb-1`}
+                      >
+                        Register
+                      </span>
+                    </Link>
+                  </div>
+                ) : (
+                  <div>
+                    <span
+                      onClick={logout}
+                      className={`ml-5 ${
+                        pathname === "/register" && "active-link"
+                      } link link-underline pb-1 cursor-pointer`}
+                    >
+                      Logout
                     </span>
-                  </Link>
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

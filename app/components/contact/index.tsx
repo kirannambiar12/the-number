@@ -1,6 +1,7 @@
 import bg from "@/app/global/assets/images/contact-bg.jpg";
 import { navigation } from "@/app/global/constants";
 import ContactForm from "./ContactForm";
+import Link from "next/link";
 
 const Contact = () => {
   return (
@@ -26,7 +27,7 @@ const Contact = () => {
             <div className="h-full flex flex-col justify-evenly">
               <div className="flex space-x-4 mx-auto justify-center">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={"rounded-md px-3 py-2 text-sm font-medium"}
@@ -41,7 +42,7 @@ const Contact = () => {
                     >
                       {item.name}
                     </span>
-                  </a>
+                  </Link>
                 ))}
               </div>
               <ContactForm />

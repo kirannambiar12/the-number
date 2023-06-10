@@ -21,7 +21,9 @@ const Toast = () => {
         typeToColorMapper?.[toast?.type]
       }-400 dark:bg-${
         typeToColorMapper?.[toast?.type]
-      }-800 sticky top-5 ml-auto mr-5 ${!toast?.message && "hidden"}`}
+      }-800 fixed top-5 right-0 z-10 ml-auto mr-5 ${
+        !toast?.message && "hidden"
+      }`}
       role="alert"
     >
       <div
