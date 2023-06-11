@@ -1,17 +1,27 @@
 import { formatPhoneNumber } from "@/app/global/utils";
 import { toastActions } from "@/app/store/Toast/slice";
 import React from "react";
-import Rater from "react-rater";
-import "react-rater/lib/react-rater.css";
+import { Rating } from "react-simple-star-rating";
 import { useDispatch } from "react-redux";
 import CommentSection from "./CommentSection";
 import scroll from "@/app/global/assets/images/scroll.png";
 import Image from "next/image";
 import layeredBg from "@/app/global/assets/svgs/4-point-stars.svg";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getNumber, rateNumber } from "./util";
 
 const NumberDetail = ({ data }: any) => {
   const dispatch = useDispatch();
-  const { phoneNumber, ratings, uid } = data?.doc;
+  const { phoneNumber, ratings } = data?.doc;
+
+  const { data: rating, refetch } = useQuery(
+    ["number", phoneNumber],
+    async () => await getNumber(phoneNumber),
+    {
+      enabled: false,
+      select: (resp) => resp?.ratings,
+    }
+  );
 
   if (data?.status === 201) {
     dispatch(
@@ -23,6 +33,27 @@ const NumberDetail = ({ data }: any) => {
       })
     );
   }
+
+  const { mutate } = useMutation(rateNumber, {
+    onSuccess: () => {
+      refetch();
+      dispatch(
+        toastActions.displayToast({
+          message: `You have successfully rated ${formatPhoneNumber(
+            phoneNumber
+          )}.`,
+          type: "success",
+        })
+      );
+    },
+  });
+
+  const rate = rating?.score
+    ? rating?.score / rating?.numberOfPeopleRated
+    : ratings?.score / ratings?.numberOfPeopleRated;
+
+  const getScore = (val: number) =>
+    rating?.score ? rating?.score + val : ratings?.score + val;
 
   return (
     <>
@@ -40,7 +71,22 @@ const NumberDetail = ({ data }: any) => {
             {phoneNumber && `(+91) ${formatPhoneNumber(phoneNumber)}`}
           </h1>
           <div className="flex items-center mx-auto justify-center">
-            <Rater interactive total={5} rating={2.6} />
+            <Rating
+              className="number-rater"
+              initialValue={rate}
+              size={70}
+              transition
+              allowFraction
+              onClick={(val) => {
+                mutate({
+                  collectionName: "numbers",
+                  doc: {
+                    score: getScore(val),
+                    number: phoneNumber,
+                  },
+                });
+              }}
+            />
           </div>
           <div className="flex flex-col font-[Electronic] text-2xl w-full max-w-md justify-center mx-auto">
             <div className="mt-16 flex justify-between hover:underline cursor-default">

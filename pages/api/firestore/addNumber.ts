@@ -61,6 +61,7 @@ export default async function handler(
         uid: id,
         ratings: {
           score: 5.0,
+          numberOfPeopleRated: 1,
         },
       }).then(() => {
         setDoc(doc(db, "comments", number), {

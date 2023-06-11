@@ -5,6 +5,8 @@ import layeredBg from "@/app/global/assets/svgs/hexagons.svg";
 import IndividualComment from "./IndividualComment";
 import BottomDrawer from "@/app/components/numberDetail/BottomDrawer";
 import { auth } from "@/app/global/configStore/firebase";
+import { useLogin } from "@/app/global/hooks/auth/useLogin";
+import { useRouter } from "next/router";
 
 type CommentDocTypes = {
   firstName: string;
@@ -15,6 +17,8 @@ type CommentDocTypes = {
   number?: string;
 } | null;
 const CommentSection = ({ number }: { number: string }) => {
+  const { isAuthenticated } = useLogin();
+  const { push } = useRouter();
   const [isClosed, setIsClosed] = useState<boolean>(true);
   const [commentData, setCommentData] = useState<CommentDocTypes>(null);
 
@@ -27,15 +31,17 @@ const CommentSection = ({ number }: { number: string }) => {
   );
 
   const onAddComment = () => {
-    const user = auth?.currentUser?.displayName;
-    const name = user?.split(" ");
-    setCommentData({
-      firstName: name?.[0] ?? "Anonymous",
-      lastName: name?.[1] ?? "Anonymous",
-      type: "COMMENT",
-      number: number,
-    } as any);
-    setIsClosed(false);
+    if (isAuthenticated) {
+      const user = auth?.currentUser?.displayName;
+      const name = user?.split(" ");
+      setCommentData({
+        firstName: name?.[0] ?? "Anonymous",
+        lastName: name?.[1] ?? "Anonymous",
+        type: "COMMENT",
+        number: number,
+      } as any);
+      setIsClosed(false);
+    } else push("/login");
   };
 
   return (

@@ -9,6 +9,7 @@ import { LoginFieldType } from "./types";
 import Textfield from "@/app/global/components/fields/Textfield";
 import { getSVGComponent } from "@/app/global/utils";
 import layeredBg from "@/app/global/assets/svgs/hexagons.svg";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const {
@@ -21,6 +22,7 @@ const Login = () => {
     reValidateMode: "onChange",
   });
   const { mutate, isLoading } = useLogin();
+  const { push } = useRouter();
 
   const onSubmit = (data: LoginFieldType) => {
     mutate(data);
@@ -83,15 +85,23 @@ const Login = () => {
                 errors={errors}
               />
             </div>
-
             <div>
               <button
                 type="submit"
-                className="flex mt-14 w-full justify-center m-auto max-w-md rounded-full border-2 border-blue-600 bg-black transition ease-in-out delay-100 duration-300 hover:text-white text-blue-600 hover:bg-blue-600 p-3 text-center"
+                className="flex mt-10 mb-8 w-full justify-center m-auto max-w-md rounded-full border-2 border-blue-600 bg-black transition ease-in-out delay-100 duration-300 hover:text-white text-blue-600 hover:bg-blue-600 p-3 text-center"
               >
                 {isLoading ? "Loading..." : "Login"}
               </button>
             </div>
+            <span className="text-center mx-auto block">
+              Don't have an account yet?{" "}
+              <span
+                onClick={() => push("/register")}
+                className="text-blue-600 cursor-pointer"
+              >
+                Register here
+              </span>
+            </span>
           </div>
         </div>
       </form>
