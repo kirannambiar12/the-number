@@ -11,17 +11,17 @@ type CommentDocTypes = {
   message: string;
   type: "REPLY" | "COMMENT";
   parentCommentId?: string;
-  nid?: string;
+  number?: string;
 } | null;
-const CommentSection = ({ nid }: { nid: string }) => {
+const CommentSection = ({ number }: { number: string }) => {
   const [isClosed, setIsClosed] = useState<boolean>(true);
   const [commentData, setCommentData] = useState<CommentDocTypes>(null);
 
   const { data } = useQuery(
-    ["user-comments", nid],
-    async () => await getComments(nid),
+    ["user-comments", number],
+    async () => await getComments(number),
     {
-      select: (resp) => resp?.userComments,
+      select: (resp) => resp?.details,
     }
   );
 
@@ -30,7 +30,7 @@ const CommentSection = ({ nid }: { nid: string }) => {
       firstName: "Anonymous",
       lastName: "Anonymous",
       type: "COMMENT",
-      nid: nid,
+      number: number,
     } as any);
     setIsClosed(false);
   };
@@ -54,26 +54,13 @@ const CommentSection = ({ nid }: { nid: string }) => {
         <h5 className="mb-10 cursor-pointer" onClick={onAddComment}>
           Add a comment
         </h5>
-        {data?.replies?.map((user: any) => (
-          <div key={user.uid}>
-            <IndividualComment
-              nid={nid}
-              user={user}
-              setIsClosed={setIsClosed}
-              setCommentData={setCommentData}
-            />
-            {user?.replies?.map((data: any) => (
-              <IndividualComment
-                key={data.uid}
-                nid={nid}
-                user={{ ...data, userId: user?.userId }}
-                isReply
-                setIsClosed={setIsClosed}
-                setCommentData={setCommentData}
-              />
-            ))}
-          </div>
-        ))}
+        <div>
+          {data?.comments?.map((user: any) => (
+            <>
+              <IndividualComment user={user} />
+            </>
+          ))}
+        </div>
       </div>
       <BottomDrawer
         setIsClosed={setIsClosed}

@@ -62,7 +62,15 @@ export default async function handler(
         ratings: {
           score: 5.0,
         },
+      }).then(() => {
+        setDoc(doc(db, "comments", number), {
+          details: {
+            createdAt: new Date(),
+            nid: id,
+          },
+        });
       });
+
       const numberDoc = await fetchDocument();
       return res.status(200).json({
         status: 201,

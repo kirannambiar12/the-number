@@ -2,23 +2,17 @@ import Image from "next/image";
 import React from "react";
 import avatar from "@/app/global/assets/images/avatar.png";
 
-const IndividualComment = ({
-  user,
-  isReply,
-  setIsClosed,
-  setCommentData,
-  nid,
-}: any) => {
-  const onReplyClick = () => {
-    setCommentData({
-      firstName: "Anonymous",
-      lastName: "Anonymous",
-      type: "REPLY",
-      ...(user?.parentCommentId && { parentCommentId: user?.parentCommentId }),
-      nid: nid,
-    });
-    setIsClosed(false);
-  };
+const IndividualComment = ({ user, isReply }: any) => {
+  // const onReplyClick = () => {
+  //   setCommentData({
+  //     firstName: "Anonymous",
+  //     lastName: "Anonymous",
+  //     type: "REPLY",
+  //     ...(user?.parentCommentId && { parentCommentId: user?.parentCommentId }),
+  //     nid: nid,
+  //   });
+  //   setIsClosed(false);
+  // };
 
   return (
     <>
@@ -34,20 +28,20 @@ const IndividualComment = ({
         />
         <div className="flex ml-2 justify-between w-full">
           <div className="flex items-center">
-            <span>{`${user.firstName} ${user.lastName}`}</span>
+            <span>{`${user?.firstName} ${user?.lastName}`}</span>
             <p className="text-xs text-gray-500 ml-5">{user?.createdAt}</p>
           </div>
-          <div className="mr-5 flex items-center">
+          {/* <div className="mr-5 flex items-center">
             <span
               onClick={onReplyClick}
               className="text-blue-600 hover:underline cursor-pointer"
             >
               Reply
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
-      <p className="ml-12 my-5">{user.message}</p>
+      <p className="ml-12 my-5">{user?.msg}</p>
     </>
   );
 };

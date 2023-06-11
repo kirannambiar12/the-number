@@ -1,11 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { addComment } from "./util";
 
 const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
+  const queryClient = useQueryClient();
   const [message, setMessage] = useState<string>("");
-  const { mutate } = useMutation(addComment, {
+  const { mutate, isLoading } = useMutation(addComment, {
     onSuccess: () => {
+      queryClient.refetchQueries(["user-comments"]);
       setIsClosed(true);
       setMessage("");
     },
@@ -44,7 +46,7 @@ const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
             type="button"
             className="text-white bg-blue-600 hover:bg-blue-800 w-36 text-center focus:outline-none font-medium rounded-lg text-sm items-center px-5 py-2.5"
           >
-            Comment
+            {isLoading ? "Loading..." : "Comment"}
           </button>
           <button
             onClick={() => setIsClosed(true)}

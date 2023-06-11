@@ -70,7 +70,7 @@ const NumberDetail = ({ data }: any) => {
           />
         </a>
       </div>
-      <CommentSection nid={uid?.trim()} />
+      <CommentSection number={phoneNumber} />
     </>
   );
 };

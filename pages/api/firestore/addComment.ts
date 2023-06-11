@@ -6,7 +6,7 @@ import { nanoid } from "nanoid";
 interface DocumentData {
   uid: string;
   message: string;
-  nid: string;
+  number: string;
   firstName: string;
   lastName: string;
   parentCommentId: string;
@@ -32,27 +32,27 @@ export default async function handler(
   };
 
   const id = nanoid();
-  const nid = document?.nid;
+  const number = document?.number;
   const msg = document?.message;
 
   if (!!msg)
     return res.status(400).json({ status: 405, message: "Message is blank" });
   try {
     if (document?.type === "REPLY") {
-      const { nid, ...rest } = document;
-      await updateDoc(doc(db, collectionName, nid), {
-        "userComments.replies": arrayUnion({ ...rest, uid: id }),
+      const { number, ...rest } = document;
+      await updateDoc(doc(db, collectionName, number), {
+        "userComments.0.replies": arrayUnion({ ...rest, uid: id }),
       });
       return res.status(200).json({
         status: 201,
         message: "Added a reply",
       });
     } else {
-      await setDoc(doc(db, collectionName, nid), {
-        userComments: {
+      await updateDoc(doc(db, collectionName, number), {
+        "details.comments": arrayUnion({
           ...document,
           uid: id,
-        },
+        }),
       });
       return res.status(200).json({
         status: 201,
