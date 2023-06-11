@@ -27,7 +27,7 @@ export default function SearchPage() {
         backgroundColor: "#000000",
         backgroundImage: `url(${layeredBg.src})`,
       }}
-      className="container-sm h-screen flex flex-col justify-center"
+      className="container-sm h-screen min-h-screen flex flex-col justify-center"
     >
       <div className="flex flex-col justify-center">
         <input
@@ -38,7 +38,7 @@ export default function SearchPage() {
             "transform -translate-y-10 transition duration-700 ease-in-out"
           } block mx-auto w-1/3 h-16 rounded-full border-blue-600 border-4 outline-none text-3xl text-white text-center bg-black`}
           value={query}
-          onChange={async (e) => {
+          onChange={(e) => {
             if (!isNumber(e.target.value)) return;
             setQuery(formatPhoneNumber(e.target.value));
           }}

@@ -5,6 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 interface DocumentData {
   score: number;
   number: string;
+  uid: string;
 }
 
 interface APIResponse {
@@ -27,6 +28,7 @@ export default async function handler(
 
   const score: number = document?.score;
   const number: string = document?.number;
+  const uid: string = document?.uid;
 
   if (!!isNaN(score))
     return res
@@ -44,6 +46,10 @@ export default async function handler(
     await updateDoc(doc(db, collectionName, number), {
       "ratings.score": score,
       "ratings.numberOfPeopleRated": updatedRating,
+    }).then(() => {
+      updateDoc(doc(db, "users", uid), {
+        canRate: false,
+      });
     });
 
     return res.status(200).json({

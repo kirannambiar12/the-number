@@ -8,7 +8,8 @@ import scroll from "@/app/global/assets/images/scroll.png";
 import Image from "next/image";
 import layeredBg from "@/app/global/assets/svgs/4-point-stars.svg";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getNumber, rateNumber } from "./util";
+import { getNumber, getUser, rateNumber } from "./util";
+import { auth } from "@/app/global/configStore/firebase";
 
 const NumberDetail = ({ data }: any) => {
   const dispatch = useDispatch();
@@ -20,6 +21,14 @@ const NumberDetail = ({ data }: any) => {
     {
       enabled: false,
       select: (resp) => resp?.ratings,
+    }
+  );
+
+  const { data: canRate, refetch: refetchUser } = useQuery(
+    ["user", phoneNumber],
+    async () => await getUser(auth?.currentUser?.uid as string),
+    {
+      select: (data) => data?.canRate,
     }
   );
 
@@ -37,6 +46,7 @@ const NumberDetail = ({ data }: any) => {
   const { mutate } = useMutation(rateNumber, {
     onSuccess: () => {
       refetch();
+      refetchUser();
       dispatch(
         toastActions.displayToast({
           message: `You have successfully rated ${formatPhoneNumber(
@@ -77,14 +87,18 @@ const NumberDetail = ({ data }: any) => {
               size={70}
               transition
               allowFraction
+              readonly={!canRate}
               onClick={(val) => {
-                mutate({
-                  collectionName: "numbers",
-                  doc: {
-                    score: getScore(val),
-                    number: phoneNumber,
-                  },
-                });
+                if (canRate) {
+                  mutate({
+                    collectionName: "numbers",
+                    doc: {
+                      score: getScore(val),
+                      number: phoneNumber,
+                      uid: auth?.currentUser?.uid,
+                    },
+                  });
+                }
               }}
             />
           </div>

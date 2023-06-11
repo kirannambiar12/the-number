@@ -8,6 +8,12 @@ export const getNumber = async (uid: string) => {
   return data;
 };
 
+export const getUser = async (uid: string) => {
+  const document = await getDoc(doc(db, "users", uid));
+  const data = document.data();
+  return data;
+};
+
 export const getComments = async (uid: string) => {
   const document = await getDoc(doc(db, "comments", uid));
   const data = document.data();
