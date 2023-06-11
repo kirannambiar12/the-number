@@ -1,10 +1,11 @@
 import { Disclosure } from "@headlessui/react";
-import { navigation } from "../../constants";
+import { mobileNav, webNav } from "../../constants";
 import { useRouter } from "next/router";
 import logo from "@/app/global/assets/gif/logo.gif";
 import Image from "next/image";
 import Link from "next/link";
 import { useLogin } from "../../hooks/auth/useLogin";
+import Hamburger from "hamburger-react";
 
 export default function Navbar() {
   const { pathname, push } = useRouter();
@@ -16,12 +17,10 @@ export default function Navbar() {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
-                {/* <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? <p>X</p> : <p>0</p>}
-                </Disclosure.Button> */}
+              <div className="absolute inset-y-0 right-0 flex items-center sm:hidden z-[2]">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <Hamburger toggled={open} />
+                </Disclosure.Button>
               </div>
               <div className="flex flex-row w-screen">
                 <div className="basis-1/8 flex flex-shrink-0 items-center">
@@ -38,9 +37,9 @@ export default function Navbar() {
                     alt="The Number Logo"
                   />
                 </div>
-                <div className="hidden relative -left-7 sm:block mx-auto">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                <div className="hidden md:flex mx-auto w-full">
+                  <div className="basis-1/2 ml-auto">
+                    {webNav.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
@@ -59,61 +58,66 @@ export default function Navbar() {
                       </Link>
                     ))}
                   </div>
-                </div>
-                {!isAuthenticated ? (
-                  <div>
-                    <Link
-                      href="/login"
-                      className={"rounded-md px-3 py-2 text-sm font-medium"}
-                    >
-                      <span
-                        className={`${
-                          pathname === "/login" && "active-link"
-                        } link link-underline pb-1`}
+                  {!isAuthenticated ? (
+                    <div>
+                      <Link
+                        href="/login"
+                        className={"rounded-md px-3 py-2 text-sm font-medium"}
                       >
-                        Login
-                      </span>
-                    </Link>
-                    <Link
-                      href="/register"
-                      className={"rounded-md px-3 py-2 text-sm font-medium"}
-                    >
+                        <span
+                          className={`${
+                            pathname === "/login" && "active-link"
+                          } link link-underline pb-1`}
+                        >
+                          Login
+                        </span>
+                      </Link>
+                      <Link
+                        href="/register"
+                        className={"rounded-md px-3 py-2 text-sm font-medium"}
+                      >
+                        <span
+                          className={`ml-5 ${
+                            pathname === "/register" && "active-link"
+                          } link link-underline pb-1`}
+                        >
+                          Register
+                        </span>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
                       <span
+                        onClick={logout}
                         className={`ml-5 ${
                           pathname === "/register" && "active-link"
-                        } link link-underline pb-1`}
+                        } link link-underline pb-1 cursor-pointer`}
                       >
-                        Register
+                        Logout
                       </span>
-                    </Link>
-                  </div>
-                ) : (
-                  <div>
-                    <span
-                      onClick={logout}
-                      className={`ml-5 ${
-                        pathname === "/register" && "active-link"
-                      } link link-underline pb-1 cursor-pointer`}
-                    >
-                      Logout
-                    </span>
-                  </div>
-                )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+          <Disclosure.Panel className="sm:hidden bg-black h-screen fixed w-full top-0 flex flex-col justify-center z-[1]">
+            <div className="space-y-1 px-2 pb-3 pt-2 text-center top-1/2">
+              {mobileNav.map((item) => (
                 <Disclosure.Button
                   key={item.name}
                   as="a"
                   href={item.href}
                   className={"block rounded-md px-3 py-2 text-base font-medium"}
-                  aria-current={item.current ? "page" : undefined}
                 >
-                  {item.name}
+                  <span
+                    className={`${
+                      pathname === item.href && "active-link"
+                    } link link-underline pb-1`}
+                  >
+                    {item.name}
+                  </span>
                 </Disclosure.Button>
               ))}
             </div>

@@ -27,7 +27,7 @@ const Vision = () => {
         backgroundRepeat: "repeat",
         backgroundSize: "2% 50px",
       }}
-      className="min-h-screen flex flex-col justify-evenly px-10 md:px-20"
+      className="min-h-screen flex flex-col justify-evenly px-10 md:px-20 py-20 lg:py-0"
     >
       <div className="max-w-sm block mx-auto"> {Animation}</div>
       <div className="max-w-4xl mx-auto">

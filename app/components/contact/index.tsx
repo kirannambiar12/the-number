@@ -1,7 +1,7 @@
 import bg from "@/app/global/assets/images/contact-bg.jpg";
-import { navigation } from "@/app/global/constants";
 import ContactForm from "./ContactForm";
 import Link from "next/link";
+import { webNav } from "@/app/global/constants";
 
 const Contact = () => {
   return (
@@ -26,7 +26,7 @@ const Contact = () => {
           <div className="h-full w-full bg-black pt-3">
             <div className="h-full flex flex-col justify-evenly">
               <div className="flex space-x-4 mx-auto justify-center">
-                {navigation.map((item) => (
+                {webNav.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}

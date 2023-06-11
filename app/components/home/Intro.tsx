@@ -12,7 +12,7 @@ const Intro = () => {
         backgroundRepeat: "repeat",
         backgroundSize: "1% 20px",
       }}
-      className="min-h-screen px-10 md:px-20 flex flex-col justify-center mb-36"
+      className="min-h-screen px-10 md:px-20 flex flex-col justify-center mb-36 py-20 lg:py-0"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 h-full mt-32">
         <div className="flex flex-col justify-center mx-auto h-full">

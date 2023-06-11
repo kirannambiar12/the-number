@@ -10,7 +10,7 @@ const HowDoesItWork = () => {
         backgroundRepeat: "repeat",
         backgroundSize: "1% 20px",
       }}
-      className="min-h-screen mt-32 px-10 md:px-20 pb-20 flex flex-col justify-center"
+      className="min-h-screen mt-32 px-10 md:px-20 pb-20 flex flex-col justify-center py-20 lg:py-0"
     >
       <h1 className="font-[FaseBulan] text-8xl text-center">
         How does it work?
