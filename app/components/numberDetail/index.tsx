@@ -33,7 +33,7 @@ const NumberDetail = ({ data }: any) => {
           backgroundRepeat: "repeat",
           backgroundSize: "1% 10px",
         }}
-        className="h-screen min-h-screen flex flex-col justify-center"
+        className="h-full min-h-screen flex flex-col justify-center"
       >
         <div>
           <h1 className="font-[FaseBulan] text-9xl text-center">
@@ -62,8 +62,8 @@ const NumberDetail = ({ data }: any) => {
         </div>
         <a href="#commentSection">
           <Image
-            width={70}
-            height={70}
+            width={50}
+            height={50}
             src={scroll}
             className="absolute bottom-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer animate-bounce"
             alt="thick-arrow-pointing-down"

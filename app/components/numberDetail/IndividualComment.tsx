@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import avatar from "@/app/global/assets/images/avatar.png";
+import { convertToDate } from "@/app/global/utils";
 
 const IndividualComment = ({ user, isReply }: any) => {
   // const onReplyClick = () => {
@@ -13,7 +14,6 @@ const IndividualComment = ({ user, isReply }: any) => {
   //   });
   //   setIsClosed(false);
   // };
-
   return (
     <>
       <div
@@ -29,7 +29,6 @@ const IndividualComment = ({ user, isReply }: any) => {
         <div className="flex ml-2 justify-between w-full">
           <div className="flex items-center">
             <span>{`${user?.firstName} ${user?.lastName}`}</span>
-            <p className="text-xs text-gray-500 ml-5">{user?.createdAt}</p>
           </div>
           {/* <div className="mr-5 flex items-center">
             <span
@@ -39,6 +38,11 @@ const IndividualComment = ({ user, isReply }: any) => {
               Reply
             </span>
           </div> */}
+          <div className="mr-5 flex items-center">
+            <p className="text-xs text-gray-500 ml-5">
+              {user?.updatedAt && convertToDate(user?.updatedAt)}
+            </p>
+          </div>
         </div>
       </div>
       <p className="ml-12 my-5">{user?.msg}</p>

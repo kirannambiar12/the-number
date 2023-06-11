@@ -1,5 +1,5 @@
 import { db } from "@/app/global/configStore/firebase";
-import { arrayUnion, doc, setDoc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { NextApiRequest, NextApiResponse } from "next";
 import { nanoid } from "nanoid";
 
@@ -52,6 +52,7 @@ export default async function handler(
         "details.comments": arrayUnion({
           ...document,
           uid: id,
+          updatedAt: new Date(),
         }),
       });
       return res.status(200).json({

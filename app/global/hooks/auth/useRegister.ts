@@ -8,8 +8,8 @@ import { RegisterFieldType } from "@/app/components/register/types";
 
 const registerUser = (data: any) => {
   return createUserWithEmailAndPassword(auth, data?.email, data?.password).then(
-    (data: any) => {
-      return updateProfile(data.user, {
+    (resp: any) => {
+      return updateProfile(resp.user, {
         displayName: `${data?.firstName} ${data?.lastName}`,
       });
     }

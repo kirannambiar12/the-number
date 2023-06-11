@@ -1,4 +1,5 @@
 import { db } from "@/app/global/configStore/firebase";
+import { format } from "date-fns";
 import { doc, getDoc } from "firebase/firestore";
 export function getSVGComponent(
   svgComponent: React.JSX.Element
@@ -32,4 +33,10 @@ export const getIsMaintenanceMode = async () => {
   const document = await getDoc(doc(db, "config", "vYAbIgAoZGQqEfCPNFXN"));
   const data = document.data();
   return data;
+};
+
+export const convertToDate = (timestamp: any) => {
+  const date = timestamp.toDate();
+  const formatedDate = format(date, "dd/MM/yyyy");
+  return formatedDate;
 };
