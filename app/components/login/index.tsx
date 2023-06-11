@@ -94,7 +94,7 @@ const Login = () => {
               </button>
             </div>
             <span className="text-center mx-auto block">
-              Don't have an account yet?{" "}
+              Don&rsquo;t have an account yet?{" "}
               <span
                 onClick={() => push("/register")}
                 className="text-blue-600 cursor-pointer"
