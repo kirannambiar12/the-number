@@ -116,7 +116,7 @@ const NumberDetail = ({ data }: any) => {
               <span>{data?.doc?.email ?? "Unkown"}</span>
             </div>
             <div className="mt-5 flex justify-between hover:underline cursor-default">
-              <span>Ratings:</span> <span>{ratings?.score}</span>
+              <span>Ratings:</span> <span>{rate}</span>
             </div>
           </div>
         </div>
