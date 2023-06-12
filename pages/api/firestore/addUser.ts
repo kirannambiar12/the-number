@@ -30,7 +30,7 @@ export default async function handler(
 
   try {
     await setDoc(doc(db, collectionName, uid), {
-      canRate: isUpdate ? isUpdate : false,
+      canRate: true,
     });
 
     return res.status(200).json({
