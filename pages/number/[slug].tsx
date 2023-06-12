@@ -29,6 +29,7 @@ export const getServerSideProps = async (pageContext: any) => {
         }
       });
   } catch (err) {
+    console.log("🚀 ~ file: [slug].tsx:32 ~ getServerSideProps ~ err:", err);
     return {
       notFound: true,
     };
