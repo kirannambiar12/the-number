@@ -9,12 +9,27 @@
 
 <url>
   <loc>https://www.thenumber.in/</loc>
-  <lastmod>2023-06-04T16:32:08+00:00</lastmod>
+  <lastmod>2023-06-14T10:59:08+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.thenumber.in/contact-us</loc>
-  <lastmod>2023-06-04T16:32:08+00:00</lastmod>
+  <lastmod>2023-06-14T10:59:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.thenumber.in/login</loc>
+  <lastmod>2023-06-14T10:59:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.thenumber.in/register</loc>
+  <lastmod>2023-06-14T10:59:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.thenumber.in/search</loc>
+  <lastmod>2023-06-14T10:59:08+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
