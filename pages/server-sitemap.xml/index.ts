@@ -23,7 +23,9 @@ async function generateSitemap(): Promise<string> {
         ${querySnapshot.docs
           .map((item) => {
             return `<url>
-            <loc>${process.env.NEXT_PUBLIC_APP_ENV}/${item.id.toString()}</loc>
+            <loc>${
+              process.env.NEXT_PUBLIC_APP_ENV
+            }/number/${item.id.toString()}</loc>
             <lastmod>${new Date().toISOString()}</lastmod>
             </url>`;
           })
