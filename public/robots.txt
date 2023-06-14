@@ -1,8 +1,14 @@
-# Block all crawlers for /accounts
+# *
 User-agent: *
-Disallow: /number/*
-Disallow: /search
+Disallow: /404
 
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: http://localhost:3000
+
+# Sitemaps
+Sitemap: http://localhost:3000/sitemap.xml
+Sitemap: http://localhost:3000/server-sitemap.xml
