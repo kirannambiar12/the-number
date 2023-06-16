@@ -31,7 +31,7 @@ const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
           name="comment"
           className={`mb-8 caret-white w-full peer border-2 m-0 block rounded bg-transparent bg-clip-padding px-3 text-base font-normal leading-tight text-gray-200 transition duration-200 ease-linear focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-gray-800 focus:outline-none peer-focus:text-primary dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem] h-20`}
           id="comment"
-          placeholder={`You are replying to @${addCommentObj?.firstName}`}
+          placeholder="Add your comment here..."
           onChange={(e) => setMessage(e.target.value)}
           value={message}
         />
@@ -49,7 +49,10 @@ const BottomDrawer = ({ isClosed, setIsClosed, addCommentObj }: any) => {
             {isLoading ? "Loading..." : "Comment"}
           </button>
           <button
-            onClick={() => setIsClosed(true)}
+            onClick={() => {
+              setMessage("");
+              setIsClosed(true);
+            }}
             type="button"
             className="text-white bg-gray-600 hover:bg-gray-700 w-36 text-center focus:outline-none focus:ring-gray-800 dark:focus:ring-gray-800 font-medium rounded-lg text-sm items-center px-5 py-2.5 ml-10"
           >
