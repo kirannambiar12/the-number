@@ -1,11 +1,12 @@
 import { Disclosure } from "@headlessui/react";
-import { mobileNav, webNav } from "../../constants";
+import { webNav } from "../../constants";
 import { useRouter } from "next/router";
 import logo from "@/app/global/assets/gif/logo.gif";
 import Image from "next/image";
 import Link from "next/link";
 import { useLogin } from "../../hooks/auth/useLogin";
 import Hamburger from "hamburger-react";
+import { getMobileNav } from "../../utils";
 
 export default function Navbar() {
   const { pathname, push } = useRouter();
@@ -104,22 +105,29 @@ export default function Navbar() {
 
           <Disclosure.Panel className="sm:hidden bg-black h-screen fixed w-full top-0 flex flex-col justify-center z-[1]">
             <div className="space-y-1 px-2 pb-3 pt-2 text-center top-1/2">
-              {mobileNav.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={"block rounded-md px-3 py-2 text-base font-medium"}
-                >
-                  <span
-                    className={`${
-                      pathname === item.href && "active-link"
-                    } link link-underline pb-1`}
-                  >
-                    {item.name}
-                  </span>
-                </Disclosure.Button>
-              ))}
+              {getMobileNav({ isAuth: isAuthenticated ?? false, logout }).map(
+                (item: any) => (
+                  <>
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className={
+                        "block rounded-md px-3 py-2 text-base font-medium"
+                      }
+                      onClick={item?.onClick && item?.onClick}
+                    >
+                      <span
+                        className={`${
+                          pathname === item.href && "active-link"
+                        } link link-underline pb-1`}
+                      >
+                        {item.name}
+                      </span>
+                    </Disclosure.Button>
+                  </>
+                )
+              )}
             </div>
           </Disclosure.Panel>
         </>

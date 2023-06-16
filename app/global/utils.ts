@@ -1,6 +1,7 @@
 import { db } from "@/app/global/configStore/firebase";
 import { format } from "date-fns";
 import { doc, getDoc } from "firebase/firestore";
+import { mobileNav } from "./constants";
 export function getSVGComponent(
   svgComponent: React.JSX.Element
 ): React.JSX.Element {
@@ -39,4 +40,29 @@ export const convertToDate = (timestamp: any) => {
   const date = timestamp.toDate();
   const formatedDate = format(date, "dd/MM/yyyy");
   return formatedDate;
+};
+
+export const getMobileNav = ({
+  isAuth = false,
+  logout,
+}: {
+  isAuth: boolean;
+  logout: any;
+}) => {
+  const navData = mobileNav.filter((nav) => {
+    if (!isAuth) return nav;
+    if (nav.name !== "Login" && nav.name !== "Register") return nav;
+  });
+
+  const signOut = {
+    name: "Logout",
+    href: "",
+    onClick: (e: any) => {
+      e.preventDefault();
+      logout();
+    },
+  };
+
+  const loggedIn = [...navData].concat(signOut);
+  return isAuth ? loggedIn : navData;
 };
