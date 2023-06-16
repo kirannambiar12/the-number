@@ -39,7 +39,7 @@ export default function Navbar() {
                   />
                 </div>
                 <div className="hidden md:flex mx-auto w-full">
-                  <div className="basis-1/2 ml-auto">
+                  <div className="basis-1/2 mx-auto flex justify-center">
                     {webNav.map((item) => (
                       <Link
                         key={item.name}
