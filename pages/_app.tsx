@@ -8,8 +8,12 @@ import Navbar from "@/app/global/components/navbar";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import SeoHead from "@/app/global/seo";
+import { useEffect } from "react";
+import { initializeGA } from "@/app/global/configStore/analytics/ga";
 
 function MyApp({ Component, pageProps }: any) {
+  useEffect(() => initializeGA(), []);
+
   return (
     <>
       <SeoHead />
