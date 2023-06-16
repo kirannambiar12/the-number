@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import AlertModal from "@/app/global/components/modal/AlertModal";
 
 export default function SearchPage() {
+  const [isLoading, setIsLoading] = useState(false);
   const { push } = useRouter();
   const [query, setQuery] = useState<string>("");
   const isTenDigits = query.length === 12;
@@ -45,13 +46,16 @@ export default function SearchPage() {
         />
         {isTenDigits && (
           <button
-            onClick={() => push(`number/${query.replace(/-/g, "")}`)}
+            onClick={() => {
+              setIsLoading(true);
+              push(`number/${query.replace(/-/g, "")}`);
+            }}
             type="submit"
             className={
               "flex w-full justify-center m-auto mt-10 max-w-xs rounded-full border-2 border-blue-600 text-white bg-blue-600 p-3 text-center"
             }
           >
-            Search
+            {isLoading ? "Loading..." : "Search"}
           </button>
         )}
       </div>
