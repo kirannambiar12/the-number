@@ -4,10 +4,15 @@ import Subject from "@/app/global/assets/svgs/Subject";
 import Textarea from "@/app/global/components/fields/Textarea";
 import Textfield from "@/app/global/components/fields/Textfield";
 import { getSVGComponent } from "@/app/global/utils";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { submitContact } from "./api";
+import { toastActions } from "@/app/store/Toast/slice";
+import { useDispatch } from "react-redux";
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -18,7 +23,29 @@ const ContactForm = () => {
     reValidateMode: "onChange",
   });
 
-  const onSubmit = () => {};
+  const { mutate, isLoading } = useMutation(submitContact, {
+    onSuccess() {
+      dispatch(
+        toastActions.displayToast({
+          message:
+            "You have successfully posted a message. Expect a response shortly.",
+          type: "success",
+        })
+      );
+    },
+    onError() {
+      dispatch(
+        toastActions.displayToast({
+          message: "Something went wrong, try again!",
+          type: "error",
+        })
+      );
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    mutate(data);
+  };
 
   return (
     <form
@@ -81,7 +108,7 @@ const ContactForm = () => {
           type="submit"
           className="flex mt-14 w-1/2 justify-center m-auto max-w-md rounded-full border-2 border-blue-600 bg-black transition ease-in-out delay-100 duration-300 hover:text-white text-blue-600 hover:bg-blue-600 p-3 text-center"
         >
-          Submit
+          {isLoading ? "Loading..." : "Submit"}
         </button>
       </div>
     </form>
