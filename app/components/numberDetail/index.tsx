@@ -10,6 +10,7 @@ import layeredBg from "@/app/global/assets/svgs/4-point-stars.svg";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getNumber, getUser, rateNumber } from "./util";
 import { auth } from "@/app/global/configStore/firebase";
+import SeoHead from "@/app/global/seo";
 
 const NumberDetail = ({ data }: any) => {
   const dispatch = useDispatch();
@@ -67,6 +68,13 @@ const NumberDetail = ({ data }: any) => {
 
   return (
     <>
+      <SeoHead
+        title={`${phoneNumber} - Suspicious phone number : ${
+          rate < 2.5 ? "It is a scam" : "It is not a scam."
+        }`}
+        description={`Is the phone number ${phoneNumber} a scam? Find out more about this suspicious number and protect yourself from fraud.`}
+        keywords={phoneNumber}
+      />
       <div
         style={{
           backgroundColor: "#000000",

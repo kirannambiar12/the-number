@@ -26,25 +26,39 @@ const SeoHead = (props: any) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
         name="description"
-        content="Lookup and rate mobile numbers to protect yourself from scams. Search, rate, and comment on phone numbers to identify potential scammers and get detailed information about them at The Number"
+        content={
+          props?.description ??
+          "Protect yourself from phone scams. Search, rate, & comment on numbers at The Number."
+        }
       />
       <meta
         name="keywords"
-        content="mobile number lookup, scammer lookup, phone number lookup, phone number rating, phone number comments, scam identification, phone number details, protect from scams, whatsapp scam, facebook scam, call scam"
+        content={`${
+          props?.keywords ? props?.keywords : ""
+        } mobile number lookup, scammer lookup, phone number lookup, phone number rating, phone number comments, scam identification, phone number details, protect from scams, whatsapp scam, facebook scam, call scam`}
       />
       <meta name="author" content="Kiran Nambiar" />
-      <title>The Number - Mobile Number Lookup and Scam Identification</title>
+      <title>
+        {props?.title ??
+          "The Number - Mobile Number Lookup and Scam Identification"}
+      </title>
       <meta
         property="og:title"
         key="og:title"
-        content="The Number - Mobile Number Lookup and Scam Identification"
+        content={
+          props?.title ??
+          "The Number - Mobile Number Lookup and Scam Identification"
+        }
       />
       <meta
         property="og:description"
         key="og:description"
-        content="Lookup and rate mobile numbers to protect yourself from scams. Search, rate, and comment on phone numbers to identify potential scammers and get detailed information about them at TheNumber.in."
+        content={
+          props?.description ??
+          "Protect yourself from phone scams. Search, rate, & comment on numbers at The Number."
+        }
       />
-      <meta property="og:url" content="https://www.thenumber.in/" />
+      <meta property="og:url" content={`${url}${asPath}`} />
       <meta property="og:site_name" content="The Number" />
       <meta property="og:image" content="/logo.png" />
       <meta property="og:type" content="website" />
