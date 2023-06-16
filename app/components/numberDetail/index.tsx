@@ -85,7 +85,7 @@ const NumberDetail = ({ data }: any) => {
         className="h-full min-h-screen flex flex-col justify-center"
       >
         <div>
-          <h1 className="font-[FaseBulan] text-9xl text-center">
+          <h1 className="font-[FaseBulan] text-6xl lg:text-9xl text-center">
             {phoneNumber && `(+91) ${formatPhoneNumber(phoneNumber)}`}
           </h1>
           <div className="flex items-center mx-auto justify-center">
@@ -110,7 +110,7 @@ const NumberDetail = ({ data }: any) => {
               }}
             />
           </div>
-          <div className="flex flex-col font-[Electronic] text-2xl w-full max-w-md justify-center mx-auto">
+          <div className="flex flex-col font-[Electronic] text-xl md:text-2xl w-full max-w-md justify-center mx-auto">
             <div className="mt-16 flex justify-between hover:underline cursor-default">
               <span>First Name:</span>{" "}
               <span>{data?.doc?.firstName ?? "Unkown"}</span>

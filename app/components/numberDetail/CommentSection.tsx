@@ -54,12 +54,12 @@ const CommentSection = ({ number }: { number: string }) => {
       className="m-auto bg-neutral-900 pt-44 pb-14 h-screen"
       id="commentSection"
     >
-      <div className="container m-auto px-36">
+      <div className="container m-auto px-12 lg:px-36">
         <h4 className="font-[Electronic] text-3xl mb-12 uppercase mt-10 -ml-5">
           Comments
         </h4>
       </div>
-      <div className="container m-auto px-36">
+      <div className="container m-auto px-12 lg:px-36">
         <h5 className="mb-10 cursor-pointer" onClick={onAddComment}>
           Add a comment
         </h5>
