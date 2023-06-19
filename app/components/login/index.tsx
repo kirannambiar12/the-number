@@ -21,7 +21,7 @@ const Login = () => {
     mode: "onChange",
     reValidateMode: "onChange",
   });
-  const { mutate, isLoading } = useLogin();
+  const { mutate, doAnonymousLogin, isLoading } = useLogin();
   const { push } = useRouter();
 
   const onSubmit = (data: LoginFieldType) => {
@@ -44,7 +44,10 @@ const Login = () => {
       >
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h1 className="font-[FaseBulan] mt-10 text-center text-8xl uppercase">
+            <h1
+              onClick={doAnonymousLogin}
+              className="font-[FaseBulan] mt-10 text-center text-8xl uppercase"
+            >
               Login
             </h1>
           </div>

@@ -1,7 +1,9 @@
 import React from "react";
 import layeredBg from "@/app/global/assets/svgs/rain.svg";
+import { useRouter } from "next/navigation";
 
 const HowDoesItWork = () => {
+  const { push } = useRouter();
   return (
     <div
       style={{
@@ -17,40 +19,28 @@ const HowDoesItWork = () => {
       </h1>
       <div className="mt-10 max-w-4xl mx-auto block">
         <p className="font-[Electronic] text-xl">
-          To use our website, simply enter the mobile number you want to learn
-          more about. You can then read comments, ratings, and complaints from
-          other users. You can also add your own comments and ratings.
+          Our website allows you to search for a mobile number and access
+          information such as comments, ratings, and complaints from other
+          users. You can also contribute your own comments and ratings.
         </p>
-
         <p className="mt-5 font-[Electronic] text-xl">
-          When you search for a mobile number on our website, we will first
-          check to see if there is an existing entry for that number. If there
-          is, you will be able to read the comments, ratings, and complaints
-          that have been submitted by other users. You can also add your own
-          comments and ratings.
+          When you search for a mobile number, our system checks if there's an
+          existing entry. If there is, you can read and add comments, ratings,
+          and complaints. If there isn't, we create a new entry where you can be
+          the first to contribute.
         </p>
-
         <p className="mt-5 font-[Electronic] text-xl">
-          If there is no existing entry for the mobile number you searched for,
-          we will create a new entry for you. This means that you will be the
-          first person to add comments, ratings, and complaints about that
-          number. Your comments and ratings will be valuable to other users who
-          are searching for the same number in the future.
+          By using our website, you contribute to a valuable resource that helps
+          people make informed decisions about who they call. We aim to create a
+          safe and inclusive community and encourage your participation.
         </p>
-
-        <p className="mt-5 font-[Electronic] text-xl">
-          As more and more people use our website, it will become an even more
-          valuable resource. The more comments, ratings, and complaints that we
-          have, the better equipped we will be to help people make informed
-          decisions about who they call.
-        </p>
-
-        <p className="mt-5 font-[Electronic] text-xl">
-          We believe that our website has the potential to be a major platform
-          for helping people make informed decisions about who they call. We are
-          committed to making our website a safe and welcoming environment for
-          everyone, and we hope that you will join our community.
-        </p>
+        <button
+          onClick={() => push("/search")}
+          type="button"
+          className="mt-20 m-auto block text-white bg-blue-600 hover:bg-blue-800 w-1/3 text-center focus:outline-none font-medium rounded-full text-sm items-center px-5 py-5"
+        >
+          Search Now
+        </button>
       </div>
     </div>
   );

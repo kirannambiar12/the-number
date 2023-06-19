@@ -9,6 +9,7 @@ import { toastActions } from "@/app/store/Toast/slice";
 import { store } from "@/app/store";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 type SignIn = {
   email: string;
@@ -43,6 +44,24 @@ export const useLogin = () => {
     }
   );
 
+  const doAnonymousLogin = () => {
+    const auth = getAuth();
+    signInAnonymously(auth)
+      .then((z) => {
+        console.log("🚀 ~ file: useLogin.ts:51 ~ .then ~ z:", z);
+        // Signed in..
+      })
+      .catch((error) => {
+        console.log(
+          "🚀 ~ file: useLogin.ts:55 ~ doAnonymousLogin ~ error:",
+          error
+        );
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ...
+      });
+  };
+
   const getUserAuthDetails = () => {
     return auth?.currentUser;
   };
@@ -64,6 +83,7 @@ export const useLogin = () => {
     ...mutate,
     isAuthenticated: isAuth,
     getUserAuthDetails,
+    doAnonymousLogin,
     logout,
   };
 };

@@ -30,6 +30,9 @@ export default function SearchPage() {
       }}
       className="container-sm h-screen min-h-screen flex flex-col justify-center"
     >
+      <h1 className="font-[FaseBulan] text-8xl text-center relative -top-20">
+        Search
+      </h1>
       <div className="flex flex-col justify-center px-10">
         <input
           type="string"
