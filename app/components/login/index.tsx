@@ -53,7 +53,7 @@ const Login = () => {
           onClick={() => setIsNormalLogin(!isNormalLogin)}
           className={`${
             isNormalLogin ? "right-0" : "left-0"
-          } absolute top-1/2 w-10 cursor-pointer animate-bounce rounded-full`}
+          } absolute top-1/2 w-10 cursor-pointer animate-bounce rounded-full hidden`}
           src={isNormalLogin ? next : prev}
           alt="Next slide icon"
         />

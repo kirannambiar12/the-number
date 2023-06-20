@@ -24,10 +24,10 @@ const HowDoesItWork = () => {
           users. You can also contribute your own comments and ratings.
         </p>
         <p className="mt-5 font-[Electronic] text-xl">
-          When you search for a mobile number, our system checks if there's an
-          existing entry. If there is, you can read and add comments, ratings,
-          and complaints. If there isn't, we create a new entry where you can be
-          the first to contribute.
+          When you search for a mobile number, our system checks if there&apos;s
+          an existing entry. If there is, you can read and add comments,
+          ratings, and complaints. If there isn&apos;t, we create a new entry
+          where you can be the first to contribute.
         </p>
         <p className="mt-5 font-[Electronic] text-xl">
           By using our website, you contribute to a valuable resource that helps
