@@ -10,10 +10,17 @@ import { Analytics } from "@vercel/analytics/react";
 import SeoHead from "@/app/global/seo";
 import { useEffect } from "react";
 import { initializeGA } from "@/app/global/configStore/analytics/ga";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: any) {
+  const { pathname } = useRouter();
   useEffect(() => initializeGA(), []);
-
+  const config = {
+    type: "spring",
+    damping: 20,
+    stiffness: 80,
+  };
   return (
     <>
       <SeoHead />
@@ -21,7 +28,15 @@ function MyApp({ Component, pageProps }: any) {
         <QueryClientProvider client={RQClient}>
           <Navbar />
           <Toast />
-          <Component {...pageProps} />
+          <motion.div
+            key={pathname}
+            transition={config}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ x: 0, opacity: 0 }}
+          >
+            <Component {...pageProps} />
+          </motion.div>
           <Analytics />
         </QueryClientProvider>
       </Provider>

@@ -47,18 +47,15 @@ export const useLogin = () => {
   const doAnonymousLogin = () => {
     const auth = getAuth();
     signInAnonymously(auth)
-      .then((z) => {
-        console.log("🚀 ~ file: useLogin.ts:51 ~ .then ~ z:", z);
-        // Signed in..
-      })
+      .then(() => push("/"))
       .catch((error) => {
-        console.log(
-          "🚀 ~ file: useLogin.ts:55 ~ doAnonymousLogin ~ error:",
-          error
-        );
-        const errorCode = error.code;
         const errorMessage = error.message;
-        // ...
+        store.dispatch(
+          toastActions.displayToast({
+            message: errorMessage,
+            type: "error",
+          })
+        );
       });
   };
 

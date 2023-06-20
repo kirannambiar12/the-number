@@ -12,8 +12,10 @@ export default function Navbar() {
   const { pathname, push } = useRouter();
   const { isAuthenticated, logout } = useLogin();
 
+  if (pathname.includes("contact-us")) return <></>;
+
   return (
-    <Disclosure as="nav" className="pt-5 absolute top-0 left-0 w-screen">
+    <Disclosure as="nav" className="pt-5 absolute top-0 left-0 w-screen z-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

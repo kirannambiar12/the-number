@@ -24,6 +24,7 @@
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.3",
     "firebase": "^9.22.0",
+    "framer-motion": "^10.12.16",
     "hamburger-react": "^2.5.0",
     "lottie-react": "^2.4.0",
     "nanoid": "^4.0.2",
